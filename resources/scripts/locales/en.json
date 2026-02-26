@@ -1115,6 +1115,7 @@
       "currency_freak": "Currency Freak",
       "currency_layer": "Currency Layer",
       "open_exchange_rate": "Open Exchange Rate",
+      "exchangerate_api": "ExchangeRate-API",
       "currency_converter": "Currency Converter",
       "server": "Server",
       "url": "URL",

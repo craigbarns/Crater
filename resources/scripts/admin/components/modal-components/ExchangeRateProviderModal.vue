@@ -286,6 +286,9 @@ const driverSite = computed(() => {
     case 'open_exchange_rate':
       return 'https://openexchangerates.org'
 
+    case 'exchangerate_api':
+      return 'https://www.exchangerate-api.com'
+
     default:
       return ''
   }

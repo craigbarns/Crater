@@ -70,6 +70,20 @@ trait ExchangeRateProvidersTrait
                 ], 200);
 
                 break;
+
+            case 'exchangerate_api':
+                $url = "https://v6.exchangerate-api.com/v6/".$filter['key']."/pair/{$baseCurrencyCode}/{$currencyCode}";
+                $response = Http::get($url)->json();
+
+                if (array_key_exists('result', $response) && $response['result'] === 'error') {
+                    return respondJson($response['error-type'], $response['error-type']);
+                }
+
+                return response()->json([
+                    'exchangeRate' => [$response['conversion_rate']],
+                ], 200);
+
+                break;
         }
     }
 
@@ -175,6 +189,24 @@ trait ExchangeRateProvidersTrait
                 return respondJson($error, $message);
 
                 break;
+
+            case 'exchangerate_api':
+                $url = "https://v6.exchangerate-api.com/v6/".$request->key."/codes";
+                $response = Http::get($url)->json();
+
+                if ($response == null) {
+                    return respondJson($error_message, $server_message);
+                }
+
+                if (array_key_exists('result', $response) && $response['result'] === 'error') {
+                    return respondJson($error, $message);
+                }
+
+                return response()->json([
+                    'supportedCurrencies' => array_column($response['supported_codes'], 0),
+                ]);
+
+                break;
         }
     }
 
@@ -204,6 +236,13 @@ trait ExchangeRateProvidersTrait
 
             case 'currency_converter':
                 $url = $this->getCurrencyConverterUrl($request)."/api/v7/currencies?apiKey=".$request->key;
+
+                return Http::get($url)->json();
+
+                break;
+
+            case 'exchangerate_api':
+                $url = "https://v6.exchangerate-api.com/v6/".$request->key."/latest/USD";
 
                 return Http::get($url)->json();
 
