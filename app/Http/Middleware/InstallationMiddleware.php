@@ -16,7 +16,7 @@ class InstallationMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (env('APP_INSTALLED') === true || env('APP_INSTALLED') === 'true') {
+        if (config('app.installed') === true || config('app.installed') === 'true') {
             return $next($request);
         }
 
