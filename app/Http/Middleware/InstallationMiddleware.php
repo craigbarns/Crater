@@ -16,6 +16,10 @@ class InstallationMiddleware
      */
     public function handle($request, Closure $next)
     {
+        if (env('APP_INSTALLED') === true || env('APP_INSTALLED') === 'true') {
+            return $next($request);
+        }
+
         if (! \Storage::disk('local')->has('database_created')) {
             return redirect('/installation');
         }
