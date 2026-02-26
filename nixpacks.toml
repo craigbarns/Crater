@@ -1,8 +1,13 @@
 [phases.setup]
-nixPkgs = ["php82", "php82Packages.composer", "nodejs"]
+nixPkgs = ["php81", "php81Packages.composer", "nodejs"]
 
 [phases.install]
 cmds = [
-    "npm install --legacy-peer-deps",
-    "composer install --no-dev --optimize-autoloader"
+    "composer install --no-dev --optimize-autoloader --no-interaction",
+    "npm install --legacy-peer-deps"
+]
+
+[phases.build]
+cmds = [
+    "npm run build"
 ]
