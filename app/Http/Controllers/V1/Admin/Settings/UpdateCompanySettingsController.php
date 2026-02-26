@@ -23,6 +23,7 @@ class UpdateCompanySettingsController extends Controller
 
         $data = $request->settings;
 
+        /*
         if (
             Arr::exists($data, 'currency') &&
             (CompanySetting::getSetting('currency', $company->id) !== $data['currency']) &&
@@ -33,6 +34,7 @@ class UpdateCompanySettingsController extends Controller
                 'message' => 'Cannot update company currency after transactions are created.'
             ]);
         }
+        */
 
         CompanySetting::setSettings($data, $request->header('company'));
 
