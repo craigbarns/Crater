@@ -4,7 +4,8 @@ nixPkgs = ["php82", "php82Packages.composer", "nodejs"]
 [phases.install]
 cmds = [
     "composer install --no-dev --optimize-autoloader --no-interaction",
-    "npm install --legacy-peer-deps"
+    "npm install --legacy-peer-deps",
+    "chmod -R 775 storage bootstrap/cache"
 ]
 
 [phases.build]
