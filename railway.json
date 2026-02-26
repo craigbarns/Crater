@@ -4,7 +4,7 @@
         "builder": "NIXPACKS"
     },
     "deploy": {
-        "startCommand": "touch .env && chmod 777 .env && chmod -R 777 storage bootstrap/cache && php artisan optimize && php -S 0.0.0.0:$PORT -t public",
+        "startCommand": "mkdir -p storage/app && touch storage/app/database_created && touch .env && chmod 777 .env && chmod -R 777 storage bootstrap/cache && php artisan optimize && php -S 0.0.0.0:$PORT -t public",
         "restartPolicyType": "ON_FAILURE"
     }
 }
