@@ -72,6 +72,31 @@
         :is-edit="isEdit"
         :customer-currency="invoiceStore.newInvoice.currency_id"
       />
+
+      <BaseInputGroup
+        :label="$t('invoices.ref_number')"
+        :content-loading="isLoading"
+      >
+        <BaseInput
+          v-model="invoiceStore.newInvoice.reference_number"
+          :content-loading="isLoading"
+        >
+          <template #left="slotProps">
+            <BaseIcon name="HashtagIcon" :class="slotProps.class" />
+          </template>
+        </BaseInput>
+      </BaseInputGroup>
+
+      <BaseInputGroup
+        :label="$t('trade.contract_number')"
+        :content-loading="isLoading"
+      >
+        <BaseInput
+          v-model="invoiceStore.newInvoice.contract_number"
+          :content-loading="isLoading"
+          :placeholder="$t('trade.contract_number_placeholder')"
+        />
+      </BaseInputGroup>
     </BaseInputGrid>
   </div>
 </template>

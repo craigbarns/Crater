@@ -75,6 +75,14 @@
         :is-edit="isEdit"
       />
 
+      <!-- Trade / Export Information -->
+      <TradeInfoSection
+        :store="estimateStore"
+        store-prop="newEstimate"
+        :is-loading="isLoadingContent"
+        :show-bl-awb="false"
+      />
+
       <BaseScrollPane>
         <!-- Estimate Items -->
         <Items
@@ -163,6 +171,7 @@ import SelectTemplateModal from '@/scripts/admin/components/modal-components/Sel
 import TaxTypeModal from '@/scripts/admin/components/modal-components/TaxTypeModal.vue'
 import ItemModal from '@/scripts/admin/components/modal-components/ItemModal.vue'
 import SalesTax from '@/scripts/admin/components/estimate-invoice-common/SalesTax.vue'
+import TradeInfoSection from '@/scripts/admin/components/estimate-invoice-common/TradeInfoSection.vue'
 
 const estimateStore = useEstimateStore()
 const moduleStore = useModuleStore()

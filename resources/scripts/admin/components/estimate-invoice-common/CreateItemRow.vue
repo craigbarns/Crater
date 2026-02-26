@@ -21,18 +21,36 @@
                 >
                   <DragIcon />
                 </div>
-                <BaseItemSelect
-                  type="Invoice"
-                  :item="itemData"
-                  :invalid="v$.name.$error"
-                  :invalid-description="v$.description.$error"
-                  :taxes="itemData.taxes"
-                  :index="index"
-                  :store-prop="storeProp"
-                  :store="store"
-                  @search="searchVal"
-                  @select="onSelectItem"
-                />
+                <div class="flex-1">
+                  <BaseItemSelect
+                    type="Invoice"
+                    :item="itemData"
+                    :invalid="v$.name.$error"
+                    :invalid-description="v$.description.$error"
+                    :taxes="itemData.taxes"
+                    :index="index"
+                    :store-prop="storeProp"
+                    :store="store"
+                    @search="searchVal"
+                    @select="onSelectItem"
+                  />
+                  <div class="flex gap-2 mt-2">
+                    <BaseInput
+                      v-model="hsCode"
+                      :content-loading="loading"
+                      :placeholder="$t('trade.hs_code_placeholder')"
+                      class="text-xs"
+                      style="max-width: 140px"
+                    />
+                    <BaseInput
+                      v-model="unit"
+                      :content-loading="loading"
+                      :placeholder="$t('trade.unit_placeholder')"
+                      class="text-xs"
+                      style="max-width: 80px"
+                    />
+                  </div>
+                </div>
               </div>
             </td>
             <td class="px-5 py-4 text-right align-top">
@@ -242,6 +260,16 @@ const itemStore = useItemStore()
 
 let route = useRoute()
 const { t } = useI18n()
+
+const hsCode = computed({
+  get: () => props.itemData.hs_code,
+  set: (newValue) => updateItemAttribute('hs_code', newValue),
+})
+
+const unit = computed({
+  get: () => props.itemData.unit,
+  set: (newValue) => updateItemAttribute('unit', newValue),
+})
 
 const quantity = computed({
   get: () => {

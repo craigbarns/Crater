@@ -21,6 +21,7 @@ class CustomerResource extends JsonResource
             'phone' => $this->phone,
             'contact_name' => $this->contact_name,
             'company_name' => $this->company_name,
+            'vat_number' => $this->vat_number,
             'website' => $this->website,
             'enable_portal' => $this->enable_portal,
             'password_added' => $this->password ? true : false,

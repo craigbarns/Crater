@@ -86,6 +86,44 @@
         </div>
       </BaseInputGrid>
 
+      <!-- Seller Legal & Tax Information -->
+      <BaseDivider class="my-6" />
+      <h3 class="text-base font-semibold text-gray-900 mb-4">
+        {{ $t('settings.company_info.legal_tax_info') }}
+      </h3>
+      <BaseInputGrid class="mb-5">
+        <BaseInputGroup :label="$t('settings.company_info.business_registration_number')">
+          <BaseInput v-model="companyForm.business_registration_number" :placeholder="$t('settings.company_info.business_registration_number_placeholder')" />
+        </BaseInputGroup>
+
+        <BaseInputGroup :label="$t('settings.company_info.tax_id')">
+          <BaseInput v-model="companyForm.tax_id" :placeholder="$t('settings.company_info.tax_id_placeholder')" />
+        </BaseInputGroup>
+      </BaseInputGrid>
+
+      <!-- Banking Information -->
+      <BaseDivider class="my-6" />
+      <h3 class="text-base font-semibold text-gray-900 mb-4">
+        {{ $t('settings.company_info.banking_info') }}
+      </h3>
+      <BaseInputGrid class="mb-5">
+        <BaseInputGroup :label="$t('settings.company_info.bank_name')">
+          <BaseInput v-model="companyForm.bank_name" />
+        </BaseInputGroup>
+
+        <BaseInputGroup :label="$t('settings.company_info.bank_account_number')">
+          <BaseInput v-model="companyForm.bank_account_number" />
+        </BaseInputGroup>
+
+        <BaseInputGroup :label="$t('settings.company_info.bank_swift_bic')">
+          <BaseInput v-model="companyForm.bank_swift_bic" />
+        </BaseInputGroup>
+
+        <BaseInputGroup :label="$t('settings.company_info.bank_iban')">
+          <BaseInput v-model="companyForm.bank_iban" />
+        </BaseInputGroup>
+      </BaseInputGrid>
+
       <BaseButton
         :loading="isSaving"
         :disabled="isSaving"
@@ -171,6 +209,12 @@ const companyForm = reactive({
     phone: '',
     zip: '',
   },
+  business_registration_number: null,
+  tax_id: null,
+  bank_name: null,
+  bank_account_number: null,
+  bank_swift_bic: null,
+  bank_iban: null,
 })
 
 utils.mergeSettings(companyForm, {

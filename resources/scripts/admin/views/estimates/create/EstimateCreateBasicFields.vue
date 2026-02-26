@@ -91,6 +91,17 @@
         :is-edit="isEdit"
         :customer-currency="estimateStore.newEstimate.currency_id"
       />
+
+      <BaseInputGroup
+        :label="$t('trade.contract_number')"
+        :content-loading="isLoading"
+      >
+        <BaseInput
+          v-model="estimateStore.newEstimate.contract_number"
+          :content-loading="isLoading"
+          :placeholder="$t('trade.contract_number_placeholder')"
+        />
+      </BaseInputGroup>
     </BaseInputGrid>
   </div>
 </template>

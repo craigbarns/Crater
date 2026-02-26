@@ -1,10 +1,11 @@
 <table width="100%" class="items-table" cellspacing="0" border="0">
     <tr class="item-table-heading-row">
         <th width="2%" class="pr-20 text-right item-table-heading">#</th>
-        <th width="40%" class="pl-0 text-left item-table-heading">@lang('pdf_items_label')</th>
+        <th width="35%" class="pl-0 text-left item-table-heading">@lang('pdf_items_label')</th>
         @foreach($customFields as $field)
             <th class="text-right item-table-heading">{{ $field->label }}</th>
         @endforeach
+        <th width="8%" class="pl-0 text-left item-table-heading">HS Code</th>
         <th class="pr-20 text-right item-table-heading">@lang('pdf_quantity_label')</th>
         <th class="pr-20 text-right item-table-heading">@lang('pdf_price_label')</th>
         @if($invoice->discount_per_item === 'YES')
@@ -39,10 +40,17 @@
                 </td>
             @endforeach
             <td
+                class="pl-0 text-left item-cell"
+                style="vertical-align: top; font-size: 10px; color: #595959;"
+            >
+                @if($item->hs_code) {{ $item->hs_code }} @endif
+                @if($item->country_of_origin) <br><span style="font-size:9px;">{{ $item->country_of_origin }}</span> @endif
+            </td>
+            <td
                 class="pr-20 text-right item-cell"
                 style="vertical-align: top;"
             >
-                {{$item->quantity}} @if($item->unit_name) {{$item->unit_name}} @endif
+                {{$item->quantity}} @if($item->unit) {{$item->unit}} @elseif($item->unit_name) {{$item->unit_name}} @endif
             </td>
             <td
                 class="pr-20 text-right item-cell"

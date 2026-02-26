@@ -412,6 +412,8 @@
 
             @include('app.pdf.estimate.partials.table')
 
+            @include('app.pdf.estimate.partials.trade_info')
+
             <div class="notes">
                 @if ($notes)
                     <div class="notes-label">

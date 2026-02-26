@@ -372,6 +372,8 @@
 
         @include('app.pdf.invoice.partials.table')
 
+        @include('app.pdf.invoice.partials.trade_info')
+
         <div class="notes">
             @if ($notes)
                 <div class="notes-label">

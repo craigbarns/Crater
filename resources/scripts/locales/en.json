@@ -233,7 +233,9 @@
     "updated_message": "Customer updated successfully",
     "address_updated_message": "Address Information Updated succesfully",
     "deleted_message": "Customer deleted successfully | Customers deleted successfully",
-    "edit_currency_not_allowed": "Cannot change currency once transactions created."
+    "edit_currency_not_allowed": "Cannot change currency once transactions created.",
+    "vat_number": "VAT Number (EU)",
+    "vat_number_placeholder": "e.g. FR12345678901"
   },
   "items": {
     "title": "Items",
@@ -878,7 +880,17 @@
       "delete_company_description": "Once you delete your company, you will lose all the data and files associated with it permanently.",
       "are_you_absolutely_sure": "Are you absolutely sure?",
       "delete_company_modal_desc": "This action cannot be undone. This will permanently delete {company} and all of its associated data.",
-      "delete_company_modal_label": "Please type {company} to confirm"
+      "delete_company_modal_label": "Please type {company} to confirm",
+      "legal_tax_info": "Legal & Tax Information",
+      "business_registration_number": "Business Registration No. (营业执照)",
+      "business_registration_number_placeholder": "e.g. 91310000XXXXXXXXXX",
+      "tax_id": "Tax ID (税号)",
+      "tax_id_placeholder": "e.g. 91310000XXXXXXXXXX",
+      "banking_info": "Banking Information",
+      "bank_name": "Bank Name",
+      "bank_account_number": "Account Number",
+      "bank_swift_bic": "SWIFT / BIC",
+      "bank_iban": "IBAN"
     },
     "custom_fields": {
       "title": "Custom Fields",
@@ -1523,5 +1535,34 @@
   "pdf_bill_to": "Bill to,",
   "pdf_ship_to": "Ship to,",
   "pdf_received_from": "Received from:",
-  "pdf_tax_label": "Tax"
+  "pdf_tax_label": "Tax",
+  "trade": {
+    "trade_info": "Trade & Export Information",
+    "contract_number": "Contract Number",
+    "contract_number_placeholder": "e.g. CONTRACT-2024-001",
+    "incoterm": "Incoterm",
+    "country_of_origin": "Country of Origin",
+    "payment_terms": "Payment Terms",
+    "payment_terms_placeholder": "e.g. T/T 30% deposit, 70% before shipment",
+    "delivery_lead_time": "Delivery Lead Time",
+    "delivery_lead_time_placeholder": "e.g. 30 days",
+    "shipping_port": "Port of Loading",
+    "shipping_port_placeholder": "e.g. Shanghai",
+    "destination_port": "Port of Destination",
+    "destination_port_placeholder": "e.g. Rotterdam",
+    "transport_mode": "Transport Mode",
+    "sea_freight": "Sea Freight",
+    "air_freight": "Air Freight",
+    "road_freight": "Road Freight",
+    "rail_freight": "Rail Freight",
+    "multimodal": "Multimodal",
+    "gross_weight_kg": "Gross Weight (kg)",
+    "net_weight_kg": "Net Weight (kg)",
+    "package_count": "Number of Packages",
+    "cbm": "Volume (CBM)",
+    "bl_awb_number": "B/L or AWB Number",
+    "bl_awb_number_placeholder": "Bill of Lading or Airway Bill No.",
+    "hs_code_placeholder": "HS Code",
+    "unit_placeholder": "Unit"
+  }
 }

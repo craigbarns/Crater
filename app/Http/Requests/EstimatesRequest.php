@@ -82,6 +82,21 @@ class EstimatesRequest extends FormRequest
             'items.*.price' => [
                 'required',
             ],
+            'items.*.hs_code' => ['nullable', 'string', 'max:20'],
+            'items.*.unit' => ['nullable', 'string', 'max:50'],
+            'items.*.country_of_origin' => ['nullable', 'string', 'max:100'],
+            'contract_number' => ['nullable', 'string', 'max:100'],
+            'incoterm' => ['nullable', 'string', 'max:100'],
+            'payment_terms' => ['nullable', 'string', 'max:255'],
+            'delivery_lead_time' => ['nullable', 'string', 'max:100'],
+            'shipping_port' => ['nullable', 'string', 'max:100'],
+            'destination_port' => ['nullable', 'string', 'max:100'],
+            'transport_mode' => ['nullable', 'string', 'max:50'],
+            'gross_weight' => ['nullable', 'numeric'],
+            'net_weight' => ['nullable', 'numeric'],
+            'package_count' => ['nullable', 'integer'],
+            'cbm' => ['nullable', 'numeric'],
+            'country_of_origin' => ['nullable', 'string', 'max:100'],
         ];
 
         $companyCurrency = CompanySetting::getSetting('currency', $this->header('company'));

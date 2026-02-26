@@ -233,7 +233,9 @@
     "updated_message": "Client mis à jour",
     "address_updated_message": "Adresse mise à jour avec succès",
     "deleted_message": "Client supprimé | Clients supprimés",
-    "edit_currency_not_allowed": "Impossible de changer de devise une fois les transactions créées."
+    "edit_currency_not_allowed": "Impossible de changer de devise une fois les transactions créées.",
+    "vat_number": "N° TVA intracommunautaire",
+    "vat_number_placeholder": "ex. FR12345678901"
   },
   "items": {
     "title": "Articles",
@@ -878,7 +880,17 @@
       "delete_company_description": "Une fois votre société supprimée, vous perdrez définitivement toutes les données et fichiers qui lui sont associés.",
       "are_you_absolutely_sure": "En êtes vous vraiment sûr?",
       "delete_company_modal_desc": "Cette action ne peut pas être annulée. Cela supprimera définitivement {company} et toutes les données associées.",
-      "delete_company_modal_label": "Veuillez saisir {company} pour confirmer"
+      "delete_company_modal_label": "Veuillez saisir {company} pour confirmer",
+      "legal_tax_info": "Informations légales et fiscales",
+      "business_registration_number": "N° d'enregistrement (营业执照)",
+      "business_registration_number_placeholder": "ex. 91310000XXXXXXXXXX",
+      "tax_id": "Numéro fiscal (税号)",
+      "tax_id_placeholder": "ex. 91310000XXXXXXXXXX",
+      "banking_info": "Coordonnées bancaires",
+      "bank_name": "Nom de la banque",
+      "bank_account_number": "Numéro de compte",
+      "bank_swift_bic": "SWIFT / BIC",
+      "bank_iban": "IBAN"
     },
     "custom_fields": {
       "title": "Champs personnalisés",
@@ -1522,5 +1534,34 @@
   "pdf_bill_to": "Facturer à",
   "pdf_ship_to": "Expédier à",
   "pdf_received_from": "Reçu de :",
-  "pdf_tax_label": "Taxe"
+  "pdf_tax_label": "Taxe",
+  "trade": {
+    "trade_info": "Informations commerciales & export",
+    "contract_number": "Numéro de contrat",
+    "contract_number_placeholder": "ex. CONTRAT-2024-001",
+    "incoterm": "Incoterm",
+    "country_of_origin": "Pays d'origine",
+    "payment_terms": "Conditions de paiement",
+    "payment_terms_placeholder": "ex. T/T 30% acompte, 70% avant expédition",
+    "delivery_lead_time": "Délai de livraison",
+    "delivery_lead_time_placeholder": "ex. 30 jours",
+    "shipping_port": "Port d'embarquement",
+    "shipping_port_placeholder": "ex. Shanghai",
+    "destination_port": "Port de destination",
+    "destination_port_placeholder": "ex. Rotterdam",
+    "transport_mode": "Mode de transport",
+    "sea_freight": "Maritime",
+    "air_freight": "Aérien",
+    "road_freight": "Routier",
+    "rail_freight": "Ferroviaire",
+    "multimodal": "Multimodal",
+    "gross_weight_kg": "Poids brut (kg)",
+    "net_weight_kg": "Poids net (kg)",
+    "package_count": "Nombre de colis",
+    "cbm": "Volume (CBM)",
+    "bl_awb_number": "N° B/L ou LTA",
+    "bl_awb_number_placeholder": "N° connaissement ou lettre de transport aérien",
+    "hs_code_placeholder": "Code HS",
+    "unit_placeholder": "Unité"
+  }
 }

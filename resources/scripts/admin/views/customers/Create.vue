@@ -157,6 +157,18 @@
                 @input="v$.currentCustomer.prefix.$touch()"
               />
             </BaseInputGroup>
+
+            <BaseInputGroup
+              :label="$t('customers.vat_number')"
+              :content-loading="isFetchingInitialData"
+            >
+              <BaseInput
+                v-model="customerStore.currentCustomer.vat_number"
+                :content-loading="isFetchingInitialData"
+                type="text"
+                :placeholder="$t('customers.vat_number_placeholder')"
+              />
+            </BaseInputGroup>
           </BaseInputGrid>
         </div>
 

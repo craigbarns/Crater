@@ -36,5 +36,18 @@ export default function () {
     selectedNote: null,
     selectedCurrency: '',
     currency_id: null,
+    contract_number: null,
+    incoterm: null,
+    payment_terms: null,
+    delivery_lead_time: null,
+    shipping_port: null,
+    destination_port: null,
+    transport_mode: null,
+    gross_weight: null,
+    net_weight: null,
+    package_count: null,
+    cbm: null,
+    bl_awb_number: null,
+    country_of_origin: 'China',
   }
 }

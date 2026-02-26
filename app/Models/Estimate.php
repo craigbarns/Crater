@@ -403,6 +403,7 @@ class Estimate extends Model implements HasMedia
 
         view()->share([
             'estimate' => $this,
+            'company' => $company,
             'customFields' => $customFields,
             'logo' => $logo ?? null,
             'company_address' => $this->getCompanyAddress(),

@@ -571,6 +571,7 @@ class Invoice extends Model implements HasMedia
 
         view()->share([
             'invoice' => $this,
+            'company' => $company,
             'customFields' => $customFields,
             'company_address' => $this->getCompanyAddress(),
             'shipping_address' => $this->getCustomerShippingAddress(),
