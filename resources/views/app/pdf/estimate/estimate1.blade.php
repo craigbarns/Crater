@@ -441,6 +441,10 @@
                     @if ($billing_address)
                         <b>@lang('pdf_bill_to')</b> <br>
                         {!! $billing_address !!}
+                        @if ($estimate->customer && $estimate->customer->vat_number)
+                            <br>@lang('customers.vat_number'): {{ $estimate->customer->vat_number }}
+                        @endif
+
                     @endif
                 </div>
             @endif
