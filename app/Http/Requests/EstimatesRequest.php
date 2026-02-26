@@ -96,6 +96,7 @@ class EstimatesRequest extends FormRequest
             'net_weight' => ['nullable', 'numeric'],
             'package_count' => ['nullable', 'integer'],
             'cbm' => ['nullable', 'numeric'],
+            'bl_awb_number' => ['nullable', 'string', 'max:100'],
             'country_of_origin' => ['nullable', 'string', 'max:100'],
         ];
 

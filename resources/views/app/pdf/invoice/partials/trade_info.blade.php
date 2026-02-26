@@ -1,6 +1,7 @@
 {{-- Trade / Export Information Section --}}
 @php
     $hasTradeInfo = $invoice->incoterm || $invoice->contract_number || $invoice->payment_terms ||
+                    $invoice->delivery_lead_time ||
                     $invoice->shipping_port || $invoice->destination_port || $invoice->transport_mode ||
                     $invoice->gross_weight || $invoice->net_weight || $invoice->package_count ||
                     $invoice->cbm || $invoice->bl_awb_number || $invoice->country_of_origin;

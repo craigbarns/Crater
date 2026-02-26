@@ -20,7 +20,8 @@ class AddTradeFieldsToEstimatesTable extends Migration
             $table->decimal('net_weight', 10, 2)->nullable()->after('gross_weight');
             $table->integer('package_count')->unsigned()->nullable()->after('net_weight');
             $table->decimal('cbm', 10, 3)->nullable()->after('package_count');
-            $table->string('country_of_origin')->nullable()->default('China')->after('cbm');
+            $table->string('bl_awb_number')->nullable()->after('cbm');
+            $table->string('country_of_origin')->nullable()->default('China')->after('bl_awb_number');
         });
     }
 
@@ -39,6 +40,7 @@ class AddTradeFieldsToEstimatesTable extends Migration
                 'net_weight',
                 'package_count',
                 'cbm',
+                'bl_awb_number',
                 'country_of_origin',
             ]);
         });
