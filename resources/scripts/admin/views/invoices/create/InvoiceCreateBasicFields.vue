@@ -48,6 +48,22 @@
         />
       </BaseInputGroup>
 
+      <BaseInputGroup
+        :label="$t('settings.preferences.currency')"
+        :content-loading="isLoading"
+      >
+        <BaseMultiselect
+          v-model="invoiceStore.newInvoice.currency_id"
+          :content-loading="isLoading"
+          :options="globalStore.currencies"
+          label="name"
+          value-prop="id"
+          :searchable="true"
+          track-by="name"
+          class="w-full"
+        />
+      </BaseInputGroup>
+
       <ExchangeRateConverter
         :store="invoiceStore"
         store-prop="newInvoice"
@@ -63,6 +79,7 @@
 <script setup>
 import ExchangeRateConverter from '@/scripts/admin/components/estimate-invoice-common/ExchangeRateConverter.vue'
 import { useInvoiceStore } from '@/scripts/admin/stores/invoice'
+import { useGlobalStore } from '@/scripts/admin/stores/global'
 
 const props = defineProps({
   v: {
@@ -80,4 +97,5 @@ const props = defineProps({
 })
 
 const invoiceStore = useInvoiceStore()
+const globalStore = useGlobalStore()
 </script>

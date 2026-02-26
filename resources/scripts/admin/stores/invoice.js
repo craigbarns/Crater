@@ -451,6 +451,7 @@ export const useInvoiceStore = (useWindow = false) => {
         this.isFetchingInitialSettings = true
 
         this.newInvoice.selectedCurrency = companyStore.selectedCompanyCurrency
+        this.newInvoice.currency_id = companyStore.selectedCompanyCurrency.id
 
         if (route.query.customer) {
           let response = await customerStore.fetchCustomer(route.query.customer)
