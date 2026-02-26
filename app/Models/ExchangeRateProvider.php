@@ -136,6 +136,20 @@ class ExchangeRateProvider extends Model
                 ], 200);
 
                 break;
+
+            case 'exchangerate_api':
+                $url = "https://v6.exchangerate-api.com/v6/".$request['key']."/pair/USD/EUR";
+                $response = Http::get($url)->json();
+
+                if (array_key_exists('result', $response) && $response['result'] === 'error') {
+                    return respondJson($response['error-type'], $response['error-type']);
+                }
+
+                return response()->json([
+                    'exchangeRate' => [$response['conversion_rate']],
+                ], 200);
+
+                break;
         }
     }
 
