@@ -80,6 +80,7 @@
 import ExchangeRateConverter from '@/scripts/admin/components/estimate-invoice-common/ExchangeRateConverter.vue'
 import { useInvoiceStore } from '@/scripts/admin/stores/invoice'
 import { useGlobalStore } from '@/scripts/admin/stores/global'
+import { watch } from 'vue'
 
 const props = defineProps({
   v: {
@@ -98,4 +99,14 @@ const props = defineProps({
 
 const invoiceStore = useInvoiceStore()
 const globalStore = useGlobalStore()
+
+watch(
+  () => invoiceStore.newInvoice.currency_id,
+  (id) => {
+    const found = globalStore.currencies.find((c) => c.id === id)
+    if (found) {
+      invoiceStore.newInvoice.selectedCurrency = found
+    }
+  }
+)
 </script>
