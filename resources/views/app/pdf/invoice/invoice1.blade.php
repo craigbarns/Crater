@@ -384,7 +384,7 @@
 
                 {!! $billing_address !!}
                 @if ($invoice->customer && $invoice->customer->vat_number)
-                    <br>@lang('customers.vat_number'): {{ $invoice->customer->vat_number }}
+                    <br>Buyer VAT No.: {{ $invoice->customer->vat_number }}
                 @endif
 
             @endif

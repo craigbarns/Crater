@@ -5,7 +5,7 @@
         @foreach($customFields as $field)
             <th class="text-right item-table-heading">{{ $field->label }}</th>
         @endforeach
-        <th width="8%" class="pl-0 text-left item-table-heading">@lang('trade.hs_code_placeholder')</th>
+        <th width="8%" class="pl-0 text-left item-table-heading">HS Code</th>
         <th class="pr-20 text-right item-table-heading">@lang('pdf_quantity_label')</th>
         <th class="pr-20 text-right item-table-heading">@lang('pdf_price_label')</th>
         @if($invoice->discount_per_item === 'YES')
