@@ -502,6 +502,7 @@ export const useEstimateStore = (useWindow = false) => {
 
         this.isFetchingInitialSettings = true
         this.newEstimate.selectedCurrency = companyStore.selectedCompanyCurrency
+        this.newEstimate.currency_id = companyStore.selectedCompanyCurrency.id
 
         if (route.query.customer) {
           let response = await customerStore.fetchCustomer(route.query.customer)

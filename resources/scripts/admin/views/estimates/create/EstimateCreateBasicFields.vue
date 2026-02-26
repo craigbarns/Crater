@@ -67,6 +67,22 @@
           </template>
         </BaseInput>
       </BaseInputGroup> -->
+      <BaseInputGroup
+        :label="$t('settings.preferences.currency')"
+        :content-loading="isLoading"
+      >
+        <BaseMultiselect
+          v-model="estimateStore.newEstimate.currency_id"
+          :content-loading="isLoading"
+          :options="globalStore.currencies"
+          label="name"
+          value-prop="id"
+          :searchable="true"
+          track-by="name"
+          class="w-full"
+        />
+      </BaseInputGroup>
+
       <ExchangeRateConverter
         :store="estimateStore"
         store-prop="newEstimate"
@@ -81,7 +97,9 @@
 
 <script setup>
 import { useEstimateStore } from '@/scripts/admin/stores/estimate'
+import { useGlobalStore } from '@/scripts/admin/stores/global'
 import ExchangeRateConverter from '@/scripts/admin/components/estimate-invoice-common/ExchangeRateConverter.vue'
+import { watch } from 'vue'
 
 const props = defineProps({
   v: {
@@ -99,4 +117,15 @@ const props = defineProps({
 })
 
 const estimateStore = useEstimateStore()
+const globalStore = useGlobalStore()
+
+watch(
+  () => estimateStore.newEstimate.currency_id,
+  (id) => {
+    const found = globalStore.currencies.find((c) => c.id === id)
+    if (found) {
+      estimateStore.newEstimate.selectedCurrency = found
+    }
+  }
+)
 </script>
