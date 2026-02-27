@@ -5,8 +5,8 @@
         @foreach($customFields as $field)
             <th class="text-right item-table-heading">{{ $field->label }}</th>
         @endforeach
-        <th width="8%" class="pl-0 text-left item-table-heading">HS Code</th>
-        <th class="pr-20 text-right item-table-heading">@lang('pdf_quantity_label')</th>
+        <th width="10%" class="pl-0 text-left item-table-heading">HS Code<br><span style="font-size:9px; font-weight:normal; color:#888;">Origin</span></th>
+        <th class="pr-20 text-right item-table-heading">@lang('pdf_quantity_label')<br><span style="font-size:9px; font-weight:normal; color:#888;">Unit</span></th>
         <th class="pr-20 text-right item-table-heading">@lang('pdf_price_label')</th>
         @if($estimate->discount_per_item === 'YES')
         <th class="pl-10 text-right item-table-heading">@lang('pdf_discount_label')</th>
@@ -43,14 +43,14 @@
                 class="pl-0 text-left item-cell"
                 style="vertical-align: top; font-size: 10px; color: #595959;"
             >
-                @if($item->hs_code) {{ $item->hs_code }} @endif
-                @if($item->country_of_origin) <br><span style="font-size:9px;">{{ $item->country_of_origin }}</span> @endif
+                @if($item->hs_code)<span style="font-size:10px; color:#040405;">{{ $item->hs_code }}</span>@endif
+                @if($item->country_of_origin)<br><span style="font-size:9px; color:#888;">{{ $item->country_of_origin }}</span>@endif
             </td>
             <td
                 class="pr-20 text-right item-cell"
                 style="vertical-align: top;"
             >
-                {{$item->quantity}} @if($item->unit) {{$item->unit}} @elseif($item->unit_name) {{$item->unit_name}} @endif
+                {{$item->quantity}}@if($item->unit)<br><span style="font-size:9px; color:#888;">{{$item->unit}}</span>@elseif($item->unit_name)<br><span style="font-size:9px; color:#888;">{{$item->unit_name}}</span>@endif
             </td>
             <td
                 class="pr-20 text-right item-cell"

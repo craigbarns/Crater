@@ -1,3 +1,6 @@
+{{-- Clear float from totals table before trade section --}}
+<div style="clear: both;"></div>
+
 {{-- Trade / Export Information Section --}}
 @php
     $hasTradeInfo = $invoice->incoterm || $invoice->contract_number || $invoice->payment_terms ||
