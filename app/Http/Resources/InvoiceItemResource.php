@@ -35,6 +35,9 @@ class InvoiceItemResource extends JsonResource
             'base_tax' => $this->base_tax,
             'base_total' => $this->base_total,
             'recurring_invoice_id' => $this->recurring_invoice_id,
+            'hs_code' => $this->hs_code,
+            'unit' => $this->unit,
+            'country_of_origin' => $this->country_of_origin,
             'taxes' => $this->when($this->taxes()->exists(), function () {
                 return TaxResource::collection($this->taxes);
             }),

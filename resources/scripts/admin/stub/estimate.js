@@ -47,6 +47,7 @@ export default function () {
     net_weight: null,
     package_count: null,
     cbm: null,
+    bl_awb_number: null,
     country_of_origin: 'China',
   }
 }
