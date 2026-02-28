@@ -37,7 +37,7 @@
         .header-logo {
 
             text-transform: capitalize;
-            color: #817AE3;
+            color: #1A1A1A;
             padding-top: 0px;
         }
 
@@ -154,7 +154,7 @@
             font-size: 12px;
             line-height: 18px;
             text-align: left;
-            color: #55547A
+            color: #717182
         }
 
         .attribute-value {
@@ -237,7 +237,7 @@
 
         .total-table-attribute-label {
             font-size: 12px;
-            color: #55547A;
+            color: #717182;
             text-align: left;
             padding-left: 10px;
         }
@@ -292,7 +292,7 @@
         /* -- Helpers -- */
 
         .text-primary {
-            color: #5851DB;
+            color: #1A1A1A;
         }
 
         .text-center {

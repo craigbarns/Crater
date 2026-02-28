@@ -49,7 +49,7 @@
             margin-top: 20px;
             padding-bottom: 20px;
             text-transform: capitalize;
-            color: #817AE3;
+            color: #1A1A1A;
         }
 
         .content-wrapper {
@@ -96,7 +96,7 @@
             line-height: 18px;
             padding-right: 40px;
             text-align: left;
-            color: #55547A;
+            color: #717182;
         }
 
         .attribute-value {
@@ -175,7 +175,7 @@
             text-align: center;
             color: rgba(0, 0, 0, 0.85);
             padding: 5px;
-            color: #55547A;
+            color: #717182;
         }
 
         tr.item-table-heading-row th {
@@ -221,7 +221,7 @@
 
         .total-table-attribute-label {
             font-size: 13px;
-            color: #55547A;
+            color: #717182;
             text-align: left;
             padding-left: 10px;
         }
@@ -276,7 +276,7 @@
         /* -- Helpers -- */
 
         .text-primary {
-            color: #5851DB;
+            color: #1A1A1A;
         }
 
 

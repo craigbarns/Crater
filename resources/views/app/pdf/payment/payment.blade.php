@@ -51,7 +51,7 @@
         .header-logo {
             /* position: absolute; */
             text-transform: capitalize;
-            color: #817AE3;
+            color: #1A1A1A;
             padding-top: 0px;
         }
 
@@ -159,7 +159,7 @@
             font-size: 12px;
             line-height: 18px;
             margin-bottom: 0px;
-            color: #55547A;
+            color: #717182;
         }
 
         .billing-address-name {
@@ -193,7 +193,7 @@
             font-size: 12px;
             line-height: 18px;
             text-align: left;
-            color: #55547A
+            color: #717182
         }
 
         .attribute-value {
@@ -271,7 +271,7 @@
             font-size: 14px;
             line-height: 21px;
             text-align: right;
-            color: #5851D8;
+            color: #1A1A1A;
             margin-left: 150px;
         }
 

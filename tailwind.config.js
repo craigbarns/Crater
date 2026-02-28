@@ -62,7 +62,7 @@ module.exports = {
     },
 
     fontFamily: {
-      base: ['Poppins', 'sans-serif'],
+      base: ['Inter', 'sans-serif'],
     },
   },
   plugins: [

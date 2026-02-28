@@ -9,12 +9,17 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
     <link rel="manifest" href="/favicons/site.webmanifest">
-    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5851d8">
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#1A1A1A">
     <link rel="shortcut icon" href="/favicons/favicon.ico">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-config" content="/favicons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- DISTRICT Brand: Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Module Styles -->
     @foreach(\Crater\Services\Module\ModuleFacade::allStyles() as $name => $path)

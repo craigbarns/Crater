@@ -30,7 +30,7 @@
         /* -- Header -- */
 
         .header-container {
-            background: #817AE3;
+            background: #1A1A1A;
             position: absolute;
             width: 100%;
             height: 141px;
@@ -218,7 +218,7 @@
             text-align: center;
             color: rgba(0, 0, 0, 0.85);
             padding: 5px;
-            color: #55547A;
+            color: #717182;
         }
 
         tr.item-table-heading-row th {
@@ -268,7 +268,7 @@
 
         .total-table-attribute-label {
             font-size: 12px;
-            color: #55547A;
+            color: #717182;
             text-align: left;
             padding-left: 10px;
         }
@@ -323,7 +323,7 @@
         /* -- Helpers -- */
 
         .text-primary {
-            color: #5851DB;
+            color: #1A1A1A;
         }
 
         .text-center {
