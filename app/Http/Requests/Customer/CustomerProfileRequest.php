@@ -105,6 +105,7 @@ class CustomerProfileRequest extends FormRequest
     public function getShippingAddress()
     {
         return collect($this->shipping)
+            ->only(['name', 'address_street_1', 'address_street_2', 'city', 'state', 'country_id', 'zip', 'phone', 'fax'])
             ->merge([
                 'type' => Address::SHIPPING_TYPE
             ])
@@ -114,6 +115,7 @@ class CustomerProfileRequest extends FormRequest
     public function getBillingAddress()
     {
         return collect($this->billing)
+            ->only(['name', 'address_street_1', 'address_street_2', 'city', 'state', 'country_id', 'zip', 'phone', 'fax'])
             ->merge([
                 'type' => Address::BILLING_TYPE
             ])
