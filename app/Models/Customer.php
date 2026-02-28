@@ -206,7 +206,7 @@ class Customer extends Authenticatable implements HasMedia
     {
         $condition = $customer->estimates()->exists() || $customer->invoices()->exists() || $customer->payments()->exists() || $customer->recurringInvoices()->exists();
 
-        if (($customer->currency_id !== $request->currency_id) && $condition) {
+        if (((int) $customer->currency_id !== (int) $request->currency_id) && $condition) {
             return 'you_cannot_edit_currency';
         }
 
