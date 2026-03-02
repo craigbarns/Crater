@@ -15,7 +15,7 @@
         />
       </div>
     </template>
-    <form action="" @submit.prevent="submitCustomerData">
+    <form action="" @submit.prevent="submitCustomerData" @keydown.enter="preventEnterSubmit">
       <div class="px-6 pb-3">
         <BaseTabGroup>
           <BaseTab :title="$t('customers.basic_info')" class="!mt-2">
@@ -599,6 +599,13 @@ async function setInitialData() {
   if (!customerStore.isEdit) {
     customerStore.currentCustomer.currency_id =
       companyStore.selectedCompanyCurrency.id
+  }
+}
+
+function preventEnterSubmit(event) {
+  // Prevent Enter key in text inputs from triggering form submission
+  if (event.target.tagName === 'INPUT' && event.target.type !== 'submit') {
+    event.preventDefault()
   }
 }
 
