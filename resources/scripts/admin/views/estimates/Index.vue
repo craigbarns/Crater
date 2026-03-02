@@ -1,6 +1,7 @@
 <template>
   <BasePage>
     <SendEstimateModal />
+    <DepositInvoiceModal />
 
     <BasePageHeader :title="$t('estimates.title')">
       <BaseBreadcrumb>
@@ -249,6 +250,7 @@ import abilities from '@/scripts/admin/stub/abilities'
 import ObservatoryIcon from '@/scripts/components/icons/empty/ObservatoryIcon.vue'
 import EstimateDropDown from '@/scripts/admin/components/dropdowns/EstimateIndexDropdown.vue'
 import SendEstimateModal from '@/scripts/admin/components/modal-components/SendEstimateModal.vue'
+import DepositInvoiceModal from '@/scripts/admin/components/modal-components/DepositInvoiceModal.vue'
 
 const estimateStore = useEstimateStore()
 const dialogStore = useDialogStore()
