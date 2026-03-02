@@ -355,7 +355,7 @@ const shareableLink = computed(() => {
 
 const getCurrentEstimateId = computed(() => {
   if (estimateData.value && estimateData.value.id) {
-    return estimate.value.id
+    return estimateData.value.id
   }
   return null
 })
@@ -518,6 +518,11 @@ async function onSendEstimate(id) {
 }
 
 async function openDepositInvoiceModal() {
+  // Re-fetch estimate to get fresh deposit_invoices data
+  const response = await estimateStore.fetchEstimate(estimateData.value.id)
+  if (response.data) {
+    estimateData.value = { ...response.data.data }
+  }
   modalStore.openModal({
     title: t('estimates.create_deposit_invoice'),
     componentName: 'DepositInvoiceModal',

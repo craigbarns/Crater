@@ -3,6 +3,7 @@
 namespace Crater\Http\Controllers\V1\Admin\Estimate;
 
 use Carbon\Carbon;
+use App;
 use Crater\Http\Controllers\Controller;
 use Crater\Http\Resources\InvoiceResource;
 use Crater\Models\CompanySetting;
@@ -94,13 +95,9 @@ class CreateDepositInvoiceController extends Controller
         $templateName = $estimate->getInvoiceTemplateName();
         $exchange_rate = $estimate->exchange_rate;
 
-        // Discount values for the deposit
-        $depositDiscount = 0;
-        $depositDiscountVal = 0;
-        if ($estimate->discount > 0 && $estimate->discount_per_item === 'NO') {
-            $depositDiscountVal = (int) round($estimate->discount_val * $percentage / 100);
-            $depositDiscount = $estimate->discount;
-        }
+        // Set locale for translated item names
+        $locale = CompanySetting::getSetting('language', $estimate->company_id);
+        App::setLocale($locale);
 
         // Create the deposit invoice
         $invoice = Invoice::create([
@@ -146,12 +143,14 @@ class CreateDepositInvoiceController extends Controller
 
         // Create a single line item for the deposit
         $itemName = $request->deposit_type === 'percentage'
-            ? "Acompte - {$percentage}% du devis N°{$estimate->estimate_number}"
-            : "Acompte sur devis N°{$estimate->estimate_number}";
+            ? __('pdf_deposit_percentage_item', ['percentage' => $percentage, 'number' => $estimate->estimate_number])
+            : __('pdf_deposit_fixed_item', ['number' => $estimate->estimate_number]);
+
+        $itemDescription = __('pdf_deposit_item_description', ['number' => $estimate->estimate_number]);
 
         $invoice->items()->create([
             'name' => $itemName,
-            'description' => "Facture d'acompte relative au devis N°{$estimate->estimate_number}",
+            'description' => $itemDescription,
             'quantity' => 1,
             'price' => $depositSubTotal,
             'total' => $depositSubTotal,

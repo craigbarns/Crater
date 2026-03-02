@@ -104,8 +104,8 @@
               v-else
               v-model="formData.deposit_value"
               type="number"
-              min="1"
-              step="1"
+              min="0.01"
+              step="0.01"
               class="mt-1"
             />
           </div>
@@ -208,6 +208,10 @@ const remainingAmount = computed(() => {
   return total - existingDepositsTotal.value
 })
 
+const currencyPrecision = computed(() => {
+  return estimateCurrency.value?.precision ?? 2
+})
+
 const calculatedAmount = computed(() => {
   const total = estimateData.value?.total || 0
   if (!formData.deposit_value || formData.deposit_value <= 0) return 0
@@ -215,7 +219,10 @@ const calculatedAmount = computed(() => {
   if (formData.deposit_type === 'percentage') {
     return Math.round(total * formData.deposit_value / 100)
   } else {
-    return Math.round(formData.deposit_value)
+    // User enters human-readable amount (e.g. 500 for 500 EUR)
+    // Convert to smallest currency unit (cents) for internal use
+    const factor = Math.pow(10, currencyPrecision.value)
+    return Math.round(formData.deposit_value * factor)
   }
 })
 
@@ -241,9 +248,14 @@ async function createDeposit() {
   isLoading.value = true
 
   try {
+    // For fixed amounts, send value in smallest currency unit (cents)
+    const depositValue = formData.deposit_type === 'fixed'
+      ? Math.round(formData.deposit_value * Math.pow(10, currencyPrecision.value))
+      : formData.deposit_value
+
     const response = await estimateStore.createDepositInvoice(estimateId.value, {
       deposit_type: formData.deposit_type,
-      deposit_value: formData.deposit_value,
+      deposit_value: depositValue,
     })
 
     if (response.data) {

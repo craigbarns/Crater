@@ -76,7 +76,7 @@
 
     <!-- Create Deposit Invoice  -->
     <BaseDropdownItem
-      v-if="userStore.hasAbilities(abilities.CREATE_INVOICE)"
+      v-if="row.status !== 'DRAFT' && userStore.hasAbilities(abilities.CREATE_INVOICE)"
       @click="openDepositModal(row)"
     >
       <BaseIcon
@@ -290,14 +290,18 @@ async function sendEstimate(estimate) {
 }
 
 async function openDepositModal(estimate) {
-  // Fetch full estimate data with deposit invoices
-  let res = await estimateStore.fetchEstimate(estimate.id)
-  modalStore.openModal({
-    title: t('estimates.create_deposit_invoice'),
-    componentName: 'DepositInvoiceModal',
-    id: estimate.id,
-    data: res.data.data,
-  })
+  try {
+    // Fetch full estimate data with deposit invoices
+    let res = await estimateStore.fetchEstimate(estimate.id)
+    modalStore.openModal({
+      title: t('estimates.create_deposit_invoice'),
+      componentName: 'DepositInvoiceModal',
+      id: estimate.id,
+      data: res.data.data,
+    })
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 async function onMarkAsAccepted(id) {

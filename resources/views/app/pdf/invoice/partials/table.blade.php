@@ -177,9 +177,10 @@
             @foreach($depositInvoices as $deposit)
                 <tr>
                     <td class="border-0 total-table-attribute-label" style="color: #717182;">
-                        Acompte {{ $deposit->invoice_number }}
                         @if($deposit->deposit_percentage)
-                            ({{ $deposit->deposit_percentage }}%)
+                            @lang('pdf_deposit_label', ['number' => $deposit->invoice_number, 'percentage' => $deposit->deposit_percentage])
+                        @else
+                            {{ $deposit->invoice_number }}
                         @endif
                     </td>
                     <td class="py-2 border-0 item-cell total-table-attribute-value" style="color: #717182;">
@@ -193,7 +194,7 @@
             </tr>
             <tr>
                 <td class="border-0 total-border-left total-table-attribute-label" style="font-weight: bold;">
-                    Reste &agrave; payer
+                    @lang('pdf_remaining_amount')
                 </td>
                 <td
                     class="py-8 border-0 total-border-right item-cell total-table-attribute-value"

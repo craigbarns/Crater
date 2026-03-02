@@ -82,6 +82,7 @@ class ConvertEstimateController extends Controller
             'base_sub_total' => $estimate->sub_total * $exchange_rate,
             'base_total' => $estimate->total * $exchange_rate,
             'base_tax' => $estimate->tax * $exchange_rate,
+            'base_due_amount' => $estimate->total * $exchange_rate,
             'currency_id' => $estimate->currency_id,
             'sales_tax_type' => $estimate->sales_tax_type,
             'sales_tax_address_type' => $estimate->sales_tax_address_type,
@@ -93,18 +94,20 @@ class ConvertEstimateController extends Controller
 
         foreach ($invoiceItems as $invoiceItem) {
             $invoiceItem['company_id'] = $request->header('company');
-            $invoiceItem['name'] = $invoiceItem['name'];
-            $estimateItem['exchange_rate'] = $exchange_rate;
-            $estimateItem['base_price'] = $invoiceItem['price'] * $exchange_rate;
-            $estimateItem['base_discount_val'] = $invoiceItem['discount_val'] * $exchange_rate;
-            $estimateItem['base_tax'] = $invoiceItem['tax'] * $exchange_rate;
-            $estimateItem['base_total'] = $invoiceItem['total'] * $exchange_rate;
+            $invoiceItem['exchange_rate'] = $exchange_rate;
+            $invoiceItem['base_price'] = $invoiceItem['price'] * $exchange_rate;
+            $invoiceItem['base_discount_val'] = $invoiceItem['discount_val'] * $exchange_rate;
+            $invoiceItem['base_tax'] = $invoiceItem['tax'] * $exchange_rate;
+            $invoiceItem['base_total'] = $invoiceItem['total'] * $exchange_rate;
 
             $item = $invoice->items()->create($invoiceItem);
 
             if (array_key_exists('taxes', $invoiceItem) && $invoiceItem['taxes']) {
                 foreach ($invoiceItem['taxes'] as $tax) {
                     $tax['company_id'] = $request->header('company');
+                    $tax['exchange_rate'] = $exchange_rate;
+                    $tax['base_amount'] = $tax['amount'] * $exchange_rate;
+                    $tax['currency_id'] = $estimate->currency_id;
 
                     if ($tax['amount']) {
                         $item->taxes()->create($tax);
