@@ -168,5 +168,40 @@
                 {!! format_money_pdf($invoice->total, $invoice->customer->currency)!!}
             </td>
         </tr>
+
+        @if($invoice->invoice_type === 'final' && isset($depositInvoices) && $depositInvoices->count() > 0)
+            <tr>
+                <td class="py-2"></td>
+                <td class="py-2"></td>
+            </tr>
+            @foreach($depositInvoices as $deposit)
+                <tr>
+                    <td class="border-0 total-table-attribute-label" style="color: #717182;">
+                        Acompte {{ $deposit->invoice_number }}
+                        @if($deposit->deposit_percentage)
+                            ({{ $deposit->deposit_percentage }}%)
+                        @endif
+                    </td>
+                    <td class="py-2 border-0 item-cell total-table-attribute-value" style="color: #717182;">
+                        - {!! format_money_pdf($deposit->total, $invoice->customer->currency) !!}
+                    </td>
+                </tr>
+            @endforeach
+            <tr>
+                <td class="py-2"></td>
+                <td class="py-2"></td>
+            </tr>
+            <tr>
+                <td class="border-0 total-border-left total-table-attribute-label" style="font-weight: bold;">
+                    Reste &agrave; payer
+                </td>
+                <td
+                    class="py-8 border-0 total-border-right item-cell total-table-attribute-value"
+                    style="color: #1A1A1A; font-weight: bold;"
+                >
+                    {!! format_money_pdf($invoice->due_amount, $invoice->customer->currency) !!}
+                </td>
+            </tr>
+        @endif
     </table>
 </div>

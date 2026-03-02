@@ -1,5 +1,6 @@
 <template>
   <SendEstimateModal @update="updateSentEstimate" />
+  <DepositInvoiceModal />
   <BasePage v-if="estimateData" class="xl:pl-96 xl:ml-8">
     <BasePageHeader :title="pageTitle">
       <template #actions>
@@ -17,6 +18,19 @@
             {{ $t('estimates.mark_as_sent') }}
           </BaseButton>
         </div>
+
+        <BaseButton
+          v-if="
+            estimateData.status !== 'DRAFT' &&
+            userStore.hasAbilities(abilities.CREATE_INVOICE)
+          "
+          :content-loading="isLoadingEstimate"
+          variant="primary-outline"
+          class="text-sm mr-3"
+          @click="openDepositInvoiceModal"
+        >
+          {{ $t('estimates.create_deposit_invoice') }}
+        </BaseButton>
 
         <BaseButton
           v-if="
@@ -289,6 +303,7 @@ import { useUserStore } from '@/scripts/admin/stores/user'
 
 import EstimateDropDown from '@/scripts/admin/components/dropdowns/EstimateIndexDropdown.vue'
 import SendEstimateModal from '@/scripts/admin/components/modal-components/SendEstimateModal.vue'
+import DepositInvoiceModal from '@/scripts/admin/components/modal-components/DepositInvoiceModal.vue'
 import LoadingIcon from '@/scripts/components/icons/LoadingIcon.vue'
 
 import abilities from '@/scripts/admin/stub/abilities'
@@ -497,6 +512,15 @@ async function onSendEstimate(id) {
   modalStore.openModal({
     title: t('estimates.send_estimate'),
     componentName: 'SendEstimateModal',
+    id: estimateData.value.id,
+    data: estimateData.value,
+  })
+}
+
+async function openDepositInvoiceModal() {
+  modalStore.openModal({
+    title: t('estimates.create_deposit_invoice'),
+    componentName: 'DepositInvoiceModal',
     id: estimateData.value.id,
     data: estimateData.value,
   })

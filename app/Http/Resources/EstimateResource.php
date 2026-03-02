@@ -59,6 +59,11 @@ class EstimateResource extends JsonResource
             'cbm' => $this->cbm,
             'bl_awb_number' => $this->bl_awb_number,
             'country_of_origin' => $this->country_of_origin,
+            'total_deposits' => $this->total_deposits,
+            'remaining_amount' => $this->remaining_amount,
+            'deposit_invoices' => $this->when($this->depositInvoices()->exists(), function () {
+                return InvoiceResource::collection($this->depositInvoices);
+            }),
             'items' => $this->when($this->items()->exists(), function () {
                 return EstimateItemResource::collection($this->items);
             }),

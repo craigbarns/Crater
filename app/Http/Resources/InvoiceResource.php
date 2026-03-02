@@ -56,6 +56,10 @@ class InvoiceResource extends JsonResource
             'sales_tax_type' => $this->sales_tax_type,
             'sales_tax_address_type' => $this->sales_tax_address_type,
             'overdue' => $this->overdue,
+            'invoice_type' => $this->invoice_type,
+            'estimate_id' => $this->estimate_id,
+            'parent_invoice_id' => $this->parent_invoice_id,
+            'deposit_percentage' => $this->deposit_percentage,
             'contract_number' => $this->contract_number,
             'incoterm' => $this->incoterm,
             'payment_terms' => $this->payment_terms,
@@ -89,6 +93,12 @@ class InvoiceResource extends JsonResource
             }),
             'currency' => $this->when($this->currency()->exists(), function () {
                 return new CurrencyResource($this->currency);
+            }),
+            'deposit_invoices' => $this->when($this->invoice_type === 'final', function () {
+                return InvoiceResource::collection($this->depositInvoices);
+            }),
+            'estimate' => $this->when($this->estimate_id && $this->relationLoaded('estimate'), function () {
+                return new EstimateResource($this->estimate);
             }),
         ];
     }

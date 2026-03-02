@@ -34,6 +34,10 @@ class Invoice extends Model implements HasMedia
     public const STATUS_PARTIALLY_PAID = 'PARTIALLY_PAID';
     public const STATUS_PAID = 'PAID';
 
+    public const TYPE_STANDARD = 'standard';
+    public const TYPE_DEPOSIT = 'deposit';
+    public const TYPE_FINAL = 'final';
+
     protected $dates = [
         'created_at',
         'updated_at',
@@ -105,6 +109,21 @@ class Invoice extends Model implements HasMedia
     public function recurringInvoice()
     {
         return $this->belongsTo(RecurringInvoice::class);
+    }
+
+    public function estimate()
+    {
+        return $this->belongsTo(Estimate::class);
+    }
+
+    public function parentInvoice()
+    {
+        return $this->belongsTo(Invoice::class, 'parent_invoice_id');
+    }
+
+    public function depositInvoices()
+    {
+        return $this->hasMany(Invoice::class, 'parent_invoice_id');
     }
 
     public function creator()
@@ -303,6 +322,16 @@ class Invoice extends Model implements HasMedia
     public function scopeWhereCustomer($query, $customer_id)
     {
         $query->where('invoices.customer_id', $customer_id);
+    }
+
+    public function scopeWhereInvoiceType($query, $type)
+    {
+        return $query->where('invoices.invoice_type', $type);
+    }
+
+    public function scopeWhereEstimateId($query, $estimateId)
+    {
+        return $query->where('invoices.estimate_id', $estimateId);
     }
 
     public function scopePaginateData($query, $limit)
@@ -569,6 +598,13 @@ class Invoice extends Model implements HasMedia
 
         $logo = $company->logo_path;
 
+        $depositInvoices = collect();
+        if ($this->invoice_type === self::TYPE_FINAL) {
+            $depositInvoices = self::where('estimate_id', $this->estimate_id)
+                ->where('invoice_type', self::TYPE_DEPOSIT)
+                ->get();
+        }
+
         view()->share([
             'invoice' => $this,
             'company' => $company,
@@ -579,6 +615,7 @@ class Invoice extends Model implements HasMedia
             'notes' => $this->getNotes(),
             'logo' => $logo ?? null,
             'taxes' => $taxes,
+            'depositInvoices' => $depositInvoices,
         ]);
 
         if (request()->has('preview')) {

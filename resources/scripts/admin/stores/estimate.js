@@ -386,6 +386,25 @@ export const useEstimateStore = (useWindow = false) => {
         })
       },
 
+      createDepositInvoice(estimateId, data) {
+        const notificationStore = useNotificationStore()
+        return new Promise((resolve, reject) => {
+          axios
+            .post(`/api/v1/estimates/${estimateId}/create-deposit-invoice`, data)
+            .then((response) => {
+              notificationStore.showNotification({
+                type: 'success',
+                message: global.t('estimates.deposit_invoice_created'),
+              })
+              resolve(response)
+            })
+            .catch((err) => {
+              handleError(err)
+              reject(err)
+            })
+        })
+      },
+
       searchEstimate(data) {
         return new Promise((resolve, reject) => {
           axios

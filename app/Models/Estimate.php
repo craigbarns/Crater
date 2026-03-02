@@ -96,6 +96,27 @@ class Estimate extends Model implements HasMedia
         return $this->hasMany(Tax::class);
     }
 
+    public function depositInvoices()
+    {
+        return $this->hasMany(Invoice::class, 'estimate_id')
+            ->where('invoice_type', Invoice::TYPE_DEPOSIT);
+    }
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class, 'estimate_id');
+    }
+
+    public function getTotalDepositsAttribute()
+    {
+        return $this->depositInvoices()->sum('total');
+    }
+
+    public function getRemainingAmountAttribute()
+    {
+        return $this->total - $this->total_deposits;
+    }
+
     public function getFormattedExpiryDateAttribute($value)
     {
         $dateFormat = CompanySetting::getSetting('carbon_date_format', $this->company_id);

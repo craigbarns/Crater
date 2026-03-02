@@ -127,6 +127,38 @@ class ConvertEstimateController extends Controller
 
         $estimate->checkForEstimateConvertAction();
 
+        // Handle deposit invoices: if deposits exist, this becomes a "final" invoice
+        $depositInvoices = Invoice::where('estimate_id', $estimate->id)
+            ->where('invoice_type', Invoice::TYPE_DEPOSIT)
+            ->get();
+
+        $invoice->estimate_id = $estimate->id;
+
+        if ($depositInvoices->count() > 0) {
+            $invoice->invoice_type = Invoice::TYPE_FINAL;
+
+            // Calculate total already paid on deposit invoices
+            $totalDepositsPaid = 0;
+            foreach ($depositInvoices as $deposit) {
+                $totalDepositsPaid += ($deposit->total - $deposit->due_amount);
+                $deposit->parent_invoice_id = $invoice->id;
+                $deposit->save();
+            }
+
+            // Reduce due_amount by what was already paid via deposits
+            $invoice->due_amount = max(0, $invoice->total - $totalDepositsPaid);
+            $invoice->base_due_amount = $invoice->due_amount * $exchange_rate;
+
+            if ($invoice->due_amount == 0) {
+                $invoice->paid_status = Invoice::STATUS_PAID;
+                $invoice->status = Invoice::STATUS_COMPLETED;
+            } elseif ($invoice->due_amount < $invoice->total) {
+                $invoice->paid_status = Invoice::STATUS_PARTIALLY_PAID;
+            }
+        }
+
+        $invoice->save();
+
         $invoice = Invoice::find($invoice->id);
 
         return new InvoiceResource($invoice);

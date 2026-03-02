@@ -74,6 +74,18 @@
       {{ $t('estimates.convert_to_invoice') }}
     </BaseDropdownItem>
 
+    <!-- Create Deposit Invoice  -->
+    <BaseDropdownItem
+      v-if="userStore.hasAbilities(abilities.CREATE_INVOICE)"
+      @click="openDepositModal(row)"
+    >
+      <BaseIcon
+        name="CashIcon"
+        class="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"
+      />
+      {{ $t('estimates.create_deposit_invoice') }}
+    </BaseDropdownItem>
+
     <!-- Mark as sent  -->
     <BaseDropdownItem
       v-if="
@@ -274,6 +286,17 @@ async function sendEstimate(estimate) {
     id: estimate.id,
     data: estimate,
     variant: 'lg',
+  })
+}
+
+async function openDepositModal(estimate) {
+  // Fetch full estimate data with deposit invoices
+  let res = await estimateStore.fetchEstimate(estimate.id)
+  modalStore.openModal({
+    title: t('estimates.create_deposit_invoice'),
+    componentName: 'DepositInvoiceModal',
+    id: estimate.id,
+    data: res.data.data,
   })
 }
 
