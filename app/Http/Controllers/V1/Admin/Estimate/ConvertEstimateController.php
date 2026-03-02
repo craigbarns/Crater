@@ -128,9 +128,9 @@ class ConvertEstimateController extends Controller
             }
         }
 
-        $estimate->checkForEstimateConvertAction();
-
-        // Handle deposit invoices: if deposits exist, this becomes a "final" invoice
+        // Handle deposit invoices BEFORE checkForEstimateConvertAction()
+        // because that action may delete the estimate, which would set
+        // deposit invoices' estimate_id to NULL via FK cascade
         $depositInvoices = Invoice::where('estimate_id', $estimate->id)
             ->where('invoice_type', Invoice::TYPE_DEPOSIT)
             ->get();
@@ -161,6 +161,8 @@ class ConvertEstimateController extends Controller
         }
 
         $invoice->save();
+
+        $estimate->checkForEstimateConvertAction();
 
         $invoice = Invoice::find($invoice->id);
 
