@@ -11,7 +11,7 @@
       </div>
     </template>
 
-    <form @submit.prevent="createNewBackup">
+    <form @submit.prevent="createNewBackup" @keydown.enter="preventEnterSubmit">
       <div class="p-6">
         <BaseInputGrid layout="one-column">
           <BaseInputGroup
@@ -177,5 +177,11 @@ function onCancel() {
     v$.value.$reset()
     backupStore.$reset()
   })
+}
+
+function preventEnterSubmit(event) {
+  if (event.target.tagName === 'INPUT' && event.target.type !== 'submit') {
+    event.preventDefault()
+  }
 }
 </script>

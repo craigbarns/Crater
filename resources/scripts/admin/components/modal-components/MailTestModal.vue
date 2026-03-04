@@ -10,7 +10,7 @@
         />
       </div>
     </template>
-    <form action="" @submit.prevent="onTestMailSend">
+    <form action="" @submit.prevent="onTestMailSend" @keydown.enter="preventEnterSubmit">
       <div class="p-4 md:p-8">
         <BaseInputGrid layout="one-column">
           <BaseInputGroup
@@ -165,5 +165,11 @@ function closeTestModal() {
     modalStore.resetModalData()
     resetFormData()
   }, 300)
+}
+
+function preventEnterSubmit(event) {
+  if (event.target.tagName === 'INPUT' && event.target.type !== 'submit') {
+    event.preventDefault()
+  }
 }
 </script>

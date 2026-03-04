@@ -14,7 +14,7 @@
       </div>
     </template>
 
-    <form action="" @submit.prevent="submitItemUnit">
+    <form action="" @submit.prevent="submitItemUnit" @keydown.enter="preventEnterSubmit">
       <div class="p-8 sm:p-6">
         <BaseInputGroup
           :label="$t('settings.customization.items.unit_name')"
@@ -139,5 +139,11 @@ function closeItemUnitModal() {
     modalStore.$reset()
     v$.value.$reset()
   }, 300)
+}
+
+function preventEnterSubmit(event) {
+  if (event.target.tagName === 'INPUT' && event.target.type !== 'submit') {
+    event.preventDefault()
+  }
 }
 </script>

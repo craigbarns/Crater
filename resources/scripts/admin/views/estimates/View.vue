@@ -287,6 +287,68 @@
         "
       />
     </div>
+
+    <!-- Deposit Invoices Summary -->
+    <div
+      v-if="estimateData && estimateData.deposit_invoices && estimateData.deposit_invoices.length > 0"
+      class="mt-6 bg-white border border-gray-200 rounded-lg shadow-sm"
+    >
+      <div class="px-4 py-3 border-b border-gray-200">
+        <h3 class="text-sm font-medium text-gray-900">
+          {{ $t('estimates.deposit_invoices') }}
+        </h3>
+      </div>
+      <div class="divide-y divide-gray-200">
+        <div
+          v-for="deposit in estimateData.deposit_invoices"
+          :key="deposit.id"
+          class="flex items-center justify-between px-4 py-3"
+        >
+          <div class="flex flex-col">
+            <router-link
+              :to="`/admin/invoices/${deposit.id}/view`"
+              class="text-sm font-medium text-primary-500 hover:text-primary-600"
+            >
+              {{ deposit.invoice_number }}
+            </router-link>
+            <span class="text-xs text-gray-500">
+              {{ deposit.formatted_invoice_date }}
+            </span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <BaseFormatMoney
+              :amount="deposit.total"
+              :currency="estimateData.customer ? estimateData.customer.currency : null"
+              class="text-sm font-medium text-gray-900"
+            />
+            <BasePaidStatusBadge
+              :status="deposit.paid_status"
+              class="px-1.5 py-0.5 text-xs"
+            >
+              {{ deposit.paid_status }}
+            </BasePaidStatusBadge>
+          </div>
+        </div>
+      </div>
+      <div class="px-4 py-3 border-t border-gray-200 bg-gray-50 rounded-b-lg">
+        <div class="flex items-center justify-between text-sm">
+          <span class="font-medium text-gray-600">{{ $t('estimates.total_deposits') }}</span>
+          <BaseFormatMoney
+            :amount="totalDepositAmount"
+            :currency="estimateData.customer ? estimateData.customer.currency : null"
+            class="font-semibold text-gray-900"
+          />
+        </div>
+        <div class="flex items-center justify-between mt-1 text-sm">
+          <span class="font-medium text-gray-600">{{ $t('estimates.remaining_to_invoice') }}</span>
+          <BaseFormatMoney
+            :amount="remainingAmount"
+            :currency="estimateData.customer ? estimateData.customer.currency : null"
+            class="font-semibold text-primary-500"
+          />
+        </div>
+      </div>
+    </div>
   </BasePage>
 </template>
 
@@ -358,6 +420,16 @@ const getCurrentEstimateId = computed(() => {
     return estimateData.value.id
   }
   return null
+})
+
+const totalDepositAmount = computed(() => {
+  if (!estimateData.value?.deposit_invoices) return 0
+  return estimateData.value.deposit_invoices.reduce((sum, deposit) => sum + deposit.total, 0)
+})
+
+const remainingAmount = computed(() => {
+  if (!estimateData.value?.total) return 0
+  return Math.max(0, estimateData.value.total - totalDepositAmount.value)
 })
 
 watch(route, (to, from) => {

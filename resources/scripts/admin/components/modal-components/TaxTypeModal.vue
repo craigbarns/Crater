@@ -13,7 +13,7 @@
         />
       </div>
     </template>
-    <form action="" @submit.prevent="submitTaxTypeData">
+    <form action="" @submit.prevent="submitTaxTypeData" @keydown.enter="preventEnterSubmit">
       <div class="p-4 sm:p-6">
         <BaseInputGrid layout="one-column">
           <BaseInputGroup
@@ -255,5 +255,11 @@ function closeTaxTypeModal() {
     taxTypeStore.resetCurrentTaxType()
     v$.value.$reset()
   }, 300)
+}
+
+function preventEnterSubmit(event) {
+  if (event.target.tagName === 'INPUT' && event.target.type !== 'submit') {
+    event.preventDefault()
+  }
 }
 </script>

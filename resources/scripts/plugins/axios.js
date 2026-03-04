@@ -29,3 +29,14 @@ axios.interceptors.request.use(function (config) {
 
   return config
 })
+
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    // Catch server errors (500+) that may not be handled by individual store actions
+    if (error.response && error.response.status >= 500) {
+      console.error('[Server Error]', error.response.status, error.response.config?.url)
+    }
+    return Promise.reject(error)
+  }
+)

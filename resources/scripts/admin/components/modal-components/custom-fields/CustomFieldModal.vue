@@ -12,7 +12,7 @@
       </div>
     </template>
 
-    <form action="" @submit.prevent="submitCustomFieldData">
+    <form action="" @submit.prevent="submitCustomFieldData" @keydown.enter="preventEnterSubmit">
       <div class="overflow-y-auto max-h-[550px]">
         <div class="px-4 md:px-8 py-8 overflow-y-auto sm:p-6">
           <BaseInputGrid layout="one-column">
@@ -419,5 +419,11 @@ function closeCustomFieldModal() {
     customFieldStore.resetCurrentCustomField()
     v$.value.$reset()
   }, 300)
+}
+
+function preventEnterSubmit(event) {
+  if (event.target.tagName === 'INPUT' && event.target.type !== 'submit') {
+    event.preventDefault()
+  }
 }
 </script>

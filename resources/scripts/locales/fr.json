@@ -367,7 +367,13 @@
       "select_an_item": "Sélectionnez un article",
       "type_item_description": "Taper la description de l'article (facultatif)"
     },
-    "mark_as_default_estimate_template_description": "If enabled, the selected template will be automatically selected for new estimates."
+    "mark_as_default_estimate_template_description": "If enabled, the selected template will be automatically selected for new estimates.",
+    "clone_estimate": "Dupliquer",
+    "confirm_clone": "Ce devis sera dupliqué dans un nouveau devis",
+    "cloned_successfully": "Devis dupliqué avec succès",
+    "deposit_invoices": "Factures d'acompte",
+    "total_deposits": "Total des acomptes",
+    "remaining_to_invoice": "Reste à facturer"
   },
   "invoices": {
     "title": "Factures",
@@ -459,7 +465,12 @@
     "marked_as_sent_message": "Facture supprimée | Factures supprimées",
     "something_went_wrong": "quelque chose a mal tourné",
     "invalid_due_amount_message": "Le paiement entré est supérieur au montant total dû pour cette facture. Veuillez vérifier et réessayer.",
-    "mark_as_default_invoice_template_description": "If enabled, the selected template will be automatically selected for new invoices."
+    "mark_as_default_invoice_template_description": "If enabled, the selected template will be automatically selected for new invoices.",
+    "type": "Type",
+    "type_standard": "Standard",
+    "type_deposit": "Acompte",
+    "type_final": "Finale",
+    "select_a_type": "Sélectionner un type"
   },
   "recurring_invoices": {
     "title": "Factures récurrentes",

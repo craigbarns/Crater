@@ -12,7 +12,7 @@
       </div>
     </template>
 
-    <form @submit.prevent="submitRoleData">
+    <form @submit.prevent="submitRoleData" @keydown.enter="preventEnterSubmit">
       <div class="px-4 md:px-8 py-4 md:py-6">
         <BaseInputGroup
           :label="$t('settings.roles.name')"
@@ -295,5 +295,11 @@ function closeRolesModal() {
 
     v$.value.$reset()
   }, 300)
+}
+
+function preventEnterSubmit(event) {
+  if (event.target.tagName === 'INPUT' && event.target.type !== 'submit') {
+    event.preventDefault()
+  }
 }
 </script>

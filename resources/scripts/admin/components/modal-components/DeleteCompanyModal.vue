@@ -17,7 +17,7 @@
         </p>
       </div>
     </div>
-    <form action="" @submit.prevent="submitCompanyData">
+    <form action="" @submit.prevent="submitCompanyData" @keydown.enter="preventEnterSubmit">
       <div class="p-4 sm:p-6 space-y-4">
         <BaseInputGroup
           :label="
@@ -153,5 +153,11 @@ function closeCompanyModal() {
     resetNewCompanyForm()
     v$.value.$reset()
   }, 300)
+}
+
+function preventEnterSubmit(event) {
+  if (event.target.tagName === 'INPUT' && event.target.type !== 'submit') {
+    event.preventDefault()
+  }
 }
 </script>

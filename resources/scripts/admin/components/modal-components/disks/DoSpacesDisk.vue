@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submitData">
+  <form @submit.prevent="submitData" @keydown.enter="preventEnterSubmit">
     <div class="px-8 py-6">
       <BaseInputGrid>
         <BaseInputGroup
@@ -312,6 +312,12 @@ export default {
       emit('onChangeDisk', diskStore.doSpaceDiskConfig.selected_driver)
     }
 
+    function preventEnterSubmit(event) {
+      if (event.target.tagName === 'INPUT' && event.target.type !== 'submit') {
+        event.preventDefault()
+      }
+    }
+
     return {
       v$,
       diskStore,
@@ -324,6 +330,7 @@ export default {
       submitData,
       onChangeDriver,
       isDisabled,
+      preventEnterSubmit,
     }
   },
 }

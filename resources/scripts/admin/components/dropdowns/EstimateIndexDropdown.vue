@@ -62,6 +62,18 @@
       </BaseDropdownItem>
     </router-link>
 
+    <!-- Clone Estimate -->
+    <BaseDropdownItem
+      v-if="userStore.hasAbilities(abilities.CREATE_ESTIMATE)"
+      @click="cloneEstimate(row.id)"
+    >
+      <BaseIcon
+        name="DocumentDuplicateIcon"
+        class="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"
+      />
+      {{ $t('estimates.clone_estimate') }}
+    </BaseDropdownItem>
+
     <!-- Convert into Invoice  -->
     <BaseDropdownItem
       v-if="userStore.hasAbilities(abilities.CREATE_INVOICE)"
@@ -347,6 +359,28 @@ async function onMarkAsRejected(id) {
       if (response) {
         estimateStore.markAsRejected(data).then((response) => {
           props.table && props.table.refresh()
+        })
+      }
+    })
+}
+
+function cloneEstimate(id) {
+  dialogStore
+    .openDialog({
+      title: t('general.are_you_sure'),
+      message: t('estimates.confirm_clone'),
+      yesLabel: t('general.ok'),
+      noLabel: t('general.cancel'),
+      variant: 'primary',
+      hideNoButton: false,
+      size: 'lg',
+    })
+    .then((res) => {
+      if (res) {
+        estimateStore.cloneEstimate({ id }).then((res) => {
+          if (res.data) {
+            router.push(`/admin/estimates/${res.data.data.id}/edit`)
+          }
         })
       }
     })

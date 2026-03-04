@@ -11,7 +11,7 @@
       </div>
     </template>
     <div class="item-modal">
-      <form action="" @submit.prevent="submitItemData">
+      <form action="" @submit.prevent="submitItemData" @keydown.enter="preventEnterSubmit">
         <div class="px-8 py-8 sm:p-6">
           <BaseInputGrid layout="one-column">
             <BaseInputGroup
@@ -259,5 +259,11 @@ function closeItemModal() {
     modalStore.$reset()
     v$.value.$reset()
   }, 300)
+}
+
+function preventEnterSubmit(event) {
+  if (event.target.tagName === 'INPUT' && event.target.type !== 'submit') {
+    event.preventDefault()
+  }
 }
 </script>

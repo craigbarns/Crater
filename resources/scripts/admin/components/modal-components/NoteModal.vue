@@ -10,7 +10,7 @@
         />
       </div>
     </template>
-    <form action="" @submit.prevent="submitNote">
+    <form action="" @submit.prevent="submitNote" @keydown.enter="preventEnterSubmit">
       <div class="px-8 py-8 sm:p-6">
         <BaseInputGrid layout="one-column">
           <BaseInputGroup
@@ -268,6 +268,12 @@ function closeNoteModal() {
     noteStore.resetCurrentNote()
     v$.value.$reset()
   }, 300)
+}
+
+function preventEnterSubmit(event) {
+  if (event.target.tagName === 'INPUT' && event.target.type !== 'submit') {
+    event.preventDefault()
+  }
 }
 </script>
 

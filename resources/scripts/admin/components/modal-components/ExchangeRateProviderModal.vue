@@ -16,7 +16,7 @@
       </div>
     </template>
 
-    <form @submit.prevent="submitExchangeRate">
+    <form @submit.prevent="submitExchangeRate" @keydown.enter="preventEnterSubmit">
       <div class="px-4 md:px-8 py-8 overflow-y-auto sm:p-6">
         <BaseInputGrid layout="one-column">
           <BaseInputGroup
@@ -483,5 +483,11 @@ function closeExchangeRateModal() {
     resetModalData()
     v$.value.$reset()
   }, 300)
+}
+
+function preventEnterSubmit(event) {
+  if (event.target.tagName === 'INPUT' && event.target.type !== 'submit') {
+    event.preventDefault()
+  }
 }
 </script>

@@ -15,7 +15,7 @@
       </div>
     </template>
 
-    <form v-if="!isPreview" action="">
+    <form v-if="!isPreview" action="" @keydown.enter="preventEnterSubmit">
       <div class="px-8 py-8 sm:p-6">
         <BaseInputGrid layout="one-column">
           <BaseInputGroup
@@ -273,5 +273,11 @@ function closeSendEstimateModal() {
     isPreview.value = false
     templateUrl.value = null
   }, 300)
+}
+
+function preventEnterSubmit(event) {
+  if (event.target.tagName === 'INPUT' && event.target.type !== 'submit') {
+    event.preventDefault()
+  }
 }
 </script>

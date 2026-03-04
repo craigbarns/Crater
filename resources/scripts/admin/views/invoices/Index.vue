@@ -85,6 +85,16 @@
         />
       </BaseInputGroup>
 
+      <BaseInputGroup :label="$t('invoices.type')">
+        <BaseMultiselect
+          v-model="filters.invoice_type"
+          :options="invoiceTypes"
+          searchable
+          :placeholder="$t('invoices.select_a_type')"
+          @remove="filters.invoice_type = ''"
+        />
+      </BaseInputGroup>
+
       <BaseInputGroup :label="$t('invoices.invoice_number')">
         <BaseInput v-model="filters.invoice_number">
           <template #left="slotProps">
@@ -201,12 +211,26 @@
 
         <!-- Invoice Number  -->
         <template #cell-invoice_number="{ row }">
-          <router-link
-            :to="{ path: `invoices/${row.data.id}/view` }"
-            class="font-medium text-primary-500"
-          >
-            {{ row.data.invoice_number }}
-          </router-link>
+          <div class="flex items-center">
+            <router-link
+              :to="{ path: `invoices/${row.data.id}/view` }"
+              class="font-medium text-primary-500"
+            >
+              {{ row.data.invoice_number }}
+            </router-link>
+            <span
+              v-if="row.data.invoice_type === 'deposit'"
+              class="ml-2 px-1.5 py-0.5 text-xs font-medium rounded-full bg-blue-100 text-blue-800"
+            >
+              {{ $t('invoices.type_deposit') }}
+            </span>
+            <span
+              v-if="row.data.invoice_type === 'final'"
+              class="ml-2 px-1.5 py-0.5 text-xs font-medium rounded-full bg-green-100 text-green-800"
+            >
+              {{ $t('invoices.type_final') }}
+            </span>
+          </div>
         </template>
 
         <!-- Invoice date  -->
@@ -311,7 +335,10 @@ let filters = reactive({
   from_date: '',
   to_date: '',
   invoice_number: '',
+  invoice_type: '',
 })
+
+const invoiceTypes = ref(['standard', 'deposit', 'final'])
 
 const showEmptyScreen = computed(
   () => !invoiceStore.invoiceTotalCount && !isRequestOngoing.value
@@ -401,6 +428,7 @@ async function fetchData({ page, filter, sort }) {
     from_date: filters.from_date,
     to_date: filters.to_date,
     invoice_number: filters.invoice_number,
+    invoice_type: filters.invoice_type,
     orderByField: sort.fieldName || 'created_at',
     orderBy: sort.order || 'desc',
     page,
@@ -463,6 +491,7 @@ function clearFilter() {
   filters.from_date = ''
   filters.to_date = ''
   filters.invoice_number = ''
+  filters.invoice_type = ''
 
   activeTab.value = t('general.all')
 }
