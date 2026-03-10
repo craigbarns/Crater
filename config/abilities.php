@@ -10,6 +10,7 @@ use Crater\Models\Item;
 use Crater\Models\Note;
 use Crater\Models\Payment;
 use Crater\Models\RecurringInvoice;
+use Crater\Models\Supplier;
 use Crater\Models\TaxType;
 
 return [
@@ -45,6 +46,39 @@ return [
             "model" => Customer::class,
             "depends_on" => [
                 'view-customer',
+            ]
+        ],
+
+        // Supplier
+        [
+            "name" => "view supplier",
+            "ability" => "view-supplier",
+            "model" => Supplier::class,
+        ],
+        [
+            "name" => "create supplier",
+            "ability" => "create-supplier",
+            "model" => Supplier::class,
+            "depends_on" => [
+                'view-supplier',
+                'view-custom-field',
+            ]
+        ],
+        [
+            "name" => "edit supplier",
+            "ability" => "edit-supplier",
+            "model" => Supplier::class,
+            "depends_on" => [
+                'view-supplier',
+                'view-custom-field',
+            ]
+        ],
+        [
+            "name" => "delete supplier",
+            "ability" => "delete-supplier",
+            "model" => Supplier::class,
+            "depends_on" => [
+                'view-supplier',
             ]
         ],
 
