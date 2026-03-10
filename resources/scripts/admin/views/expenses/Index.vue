@@ -63,6 +63,21 @@
         />
       </BaseInputGroup>
 
+      <BaseInputGroup :label="$t('expenses.supplier')">
+        <BaseMultiselect
+          v-model="filters.supplier_id"
+          value-prop="id"
+          label="name"
+          track-by="name"
+          :filter-results="false"
+          resolve-on-load
+          :delay="500"
+          :options="searchSupplier"
+          searchable
+          :placeholder="$t('suppliers.select_a_supplier')"
+        />
+      </BaseInputGroup>
+
       <BaseInputGroup :label="$t('expenses.from_date')">
         <BaseDatePicker
           v-model="filters.from_date"
@@ -195,6 +210,13 @@
           />
         </template>
 
+        <template #cell-supplier_name="{ row }">
+          <BaseText
+            :text="row.data.supplier ? row.data.supplier.name : '-'"
+            :length="30"
+          />
+        </template>
+
         <template #cell-notes="{ row }">
           <div class="notes">
             <div class="truncate note w-60">
@@ -219,6 +241,7 @@
 import { ref, onMounted, computed, reactive, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useExpenseStore } from '@/scripts/admin/stores/expense'
+import { useSupplierStore } from '@/scripts/admin/stores/supplier'
 import { useCategoryStore } from '@/scripts/admin/stores/category'
 import { useDialogStore } from '@/scripts/stores/dialog'
 import { useCompanyStore } from '@/scripts/admin/stores/company'
@@ -232,6 +255,7 @@ import ExpenseDropdown from '@/scripts/admin/components/dropdowns/ExpenseIndexDr
 
 const companyStore = useCompanyStore()
 const expenseStore = useExpenseStore()
+const supplierStore = useSupplierStore()
 const dialogStore = useDialogStore()
 const categoryStore = useCategoryStore()
 const userStore = useUserStore()
@@ -244,6 +268,7 @@ const filters = reactive({
   from_date: '',
   to_date: '',
   customer_id: '',
+  supplier_id: '',
 })
 
 const { t } = useI18n()
@@ -289,6 +314,7 @@ const expenseColumns = computed(() => {
       tdClass: 'cursor-pointer font-medium text-primary-500',
     },
     { key: 'user_name', label: 'Customer' },
+    { key: 'supplier_name', label: 'Supplier' },
     { key: 'notes', label: 'Note' },
     { key: 'amount', label: 'Amount' },
     {
@@ -319,6 +345,11 @@ onMounted(() => {
 
 async function searchCategory(search) {
   let res = await categoryStore.fetchCategories({ search })
+  return res.data.data
+}
+
+async function searchSupplier(search) {
+  let res = await supplierStore.fetchSuppliers({ search })
   return res.data.data
 }
 
@@ -364,6 +395,7 @@ function clearFilter() {
   filters.from_date = ''
   filters.to_date = ''
   filters.customer_id = ''
+  filters.supplier_id = ''
 }
 
 function toggleFilter() {

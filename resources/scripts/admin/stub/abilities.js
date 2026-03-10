@@ -46,11 +46,17 @@ export default {
   VIEW_PAYMENT: 'view-payment',
   SEND_PAYMENT: 'send-payment',
 
-  // Payment
+  // Expenses
   CREATE_EXPENSE: 'create-expense',
   DELETE_EXPENSE: 'delete-expense',
   EDIT_EXPENSE: 'edit-expense',
   VIEW_EXPENSE: 'view-expense',
+
+  // Suppliers
+  CREATE_SUPPLIER: 'create-supplier',
+  DELETE_SUPPLIER: 'delete-supplier',
+  EDIT_SUPPLIER: 'edit-supplier',
+  VIEW_SUPPLIER: 'view-supplier',
 
   // Custom fields
   CREATE_CUSTOM_FIELDS: 'create-custom-field',

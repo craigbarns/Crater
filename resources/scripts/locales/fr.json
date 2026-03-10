@@ -12,7 +12,8 @@
     "settings": "Paramètres",
     "logout": "Déconnexion",
     "users": "Utilisateurs",
-    "modules": "Modules"
+    "modules": "Modules",
+    "suppliers": "Fournisseurs"
   },
   "general": {
     "add_company": "Ajouter une entreprise",
@@ -626,6 +627,7 @@
     "select_a_customer": "Sélectionnez un client",
     "expense_title": "Titre",
     "customer": "Client",
+    "supplier": "Fournisseur",
     "currency": "Devise",
     "contact": "Contact",
     "category": "Catégorie",
@@ -666,6 +668,32 @@
       "category": "Catégorie | Catégories",
       "select_a_category": "Choisissez une catégorie"
     }
+  },
+  "suppliers": {
+    "title": "Fournisseurs",
+    "supplier": "Fournisseur | Fournisseurs",
+    "name": "Nom",
+    "email": "Email",
+    "phone": "Téléphone",
+    "contact_name": "Nom du contact",
+    "company_name": "Nom de l'entreprise",
+    "website": "Site web",
+    "primary_currency": "Devise principale",
+    "select_currency": "Sélectionnez une devise",
+    "basic_info": "Informations de base",
+    "billing_address": "Adresse de facturation",
+    "new_supplier": "Nouveau fournisseur",
+    "add_new_supplier": "Ajouter un fournisseur",
+    "save_supplier": "Enregistrer",
+    "update_supplier": "Enregistrer",
+    "edit_supplier": "Modifier ce fournisseur",
+    "no_suppliers": "Aucun fournisseur",
+    "list_of_suppliers": "Ajoutez des fournisseurs et retrouvez-les ici",
+    "confirm_delete": "Vous ne pourrez pas récupérer ce fournisseur | Vous ne pourrez pas récupérer ces fournisseurs",
+    "created_message": "Fournisseur créé",
+    "updated_message": "Fournisseur mis à jour",
+    "deleted_message": "Fournisseur supprimé | Fournisseurs supprimés",
+    "select_a_supplier": "Sélectionnez un fournisseur"
   },
   "login": {
     "email": "Email",

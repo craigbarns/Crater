@@ -45,6 +45,9 @@ class ExpenseRequest extends FormRequest
             'customer_id' => [
                 'nullable',
             ],
+            'supplier_id' => [
+                'nullable',
+            ],
             'notes' => [
                 'nullable',
             ],

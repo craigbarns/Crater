@@ -20,6 +20,11 @@ const CustomerCreate = () =>
   import('@/scripts/admin/views/customers/Create.vue')
 const CustomerView = () => import('@/scripts/admin/views/customers/View.vue')
 
+// Suppliers
+const SupplierIndex = () => import('@/scripts/admin/views/suppliers/Index.vue')
+const SupplierCreate = () =>
+  import('@/scripts/admin/views/suppliers/Create.vue')
+
 //Settings
 const SettingsIndex = () =>
   import('@/scripts/admin/views/settings/SettingsIndex.vue')
@@ -195,6 +200,25 @@ export default [
         meta: { ability: abilities.VIEW_CUSTOMER },
         component: CustomerView,
       },
+      // Suppliers
+      {
+        path: 'suppliers',
+        meta: { ability: abilities.VIEW_SUPPLIER },
+        component: SupplierIndex,
+      },
+      {
+        path: 'suppliers/create',
+        name: 'suppliers.create',
+        meta: { ability: abilities.CREATE_SUPPLIER },
+        component: SupplierCreate,
+      },
+      {
+        path: 'suppliers/:id/edit',
+        name: 'suppliers.edit',
+        meta: { ability: abilities.EDIT_SUPPLIER },
+        component: SupplierCreate,
+      },
+
       // Payments
       {
         path: 'payments',

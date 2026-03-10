@@ -7,6 +7,7 @@ export default {
   notes: '',
   attachment_receipt: null,
   customer_id: '',
+  supplier_id: '',
   currency_id: '',
   payment_method_id: '',
   receiptFiles: [],

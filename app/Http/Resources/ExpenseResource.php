@@ -32,8 +32,12 @@ class ExpenseResource extends JsonResource
             'currency_id' => $this->currency_id,
             'base_amount' => $this->base_amount,
             'payment_method_id' => $this->payment_method_id,
+            'supplier_id' => $this->supplier_id,
             'customer' => $this->when($this->customer()->exists(), function () {
                 return new CustomerResource($this->customer);
+            }),
+            'supplier' => $this->when($this->supplier()->exists(), function () {
+                return new SupplierResource($this->supplier);
             }),
             'expense_category' => $this->when($this->category()->exists(), function () {
                 return new ExpenseCategoryResource($this->category);

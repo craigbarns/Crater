@@ -3,6 +3,7 @@
 use Crater\Models\Customer;
 use Crater\Models\CustomField;
 use Crater\Models\Estimate;
+use Crater\Models\Supplier;
 use Crater\Models\ExchangeRateProvider;
 use Crater\Models\Expense;
 use Crater\Models\Invoice;
@@ -302,6 +303,16 @@ return [
             'model' => Customer::class
         ],
         [
+            'title' => 'navigation.suppliers',
+            'group' => 1,
+            'link' => '/admin/suppliers',
+            'icon' => 'TruckIcon',
+            'name' => 'Suppliers',
+            'owner_only' => false,
+            'ability' => 'view-supplier',
+            'model' => Supplier::class
+        ],
+        [
             'title' => 'navigation.items',
             'group' => 1,
             'link' => '/admin/items',
@@ -504,5 +515,6 @@ return [
         'Invoice',
         'Payment',
         'Expense',
+        'Supplier',
     ]
 ];

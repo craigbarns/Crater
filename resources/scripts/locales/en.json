@@ -12,7 +12,8 @@
     "settings": "Settings",
     "logout": "Logout",
     "users": "Users",
-    "modules": "Modules"
+    "modules": "Modules",
+    "suppliers": "Suppliers"
   },
   "general": {
     "add_company": "Add Company",
@@ -626,6 +627,7 @@
     "select_a_customer": "Select a customer",
     "expense_title": "Title",
     "customer": "Customer",
+    "supplier": "Supplier",
     "currency": "Currency",
     "contact": "Contact",
     "category": "Category",
@@ -666,6 +668,32 @@
       "category": "Category | Categories",
       "select_a_category": "Select a category"
     }
+  },
+  "suppliers": {
+    "title": "Suppliers",
+    "supplier": "Supplier | Suppliers",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "contact_name": "Contact Name",
+    "company_name": "Company Name",
+    "website": "Website",
+    "primary_currency": "Primary Currency",
+    "select_currency": "Select a currency",
+    "basic_info": "Basic Info",
+    "billing_address": "Billing Address",
+    "new_supplier": "New Supplier",
+    "add_new_supplier": "Add New Supplier",
+    "save_supplier": "Save Supplier",
+    "update_supplier": "Update Supplier",
+    "edit_supplier": "Edit Supplier",
+    "no_suppliers": "No suppliers yet!",
+    "list_of_suppliers": "This section will contain the list of suppliers.",
+    "confirm_delete": "You will not be able to recover this Supplier | You will not be able to recover these Suppliers",
+    "created_message": "Supplier created successfully",
+    "updated_message": "Supplier updated successfully",
+    "deleted_message": "Supplier deleted successfully | Suppliers deleted successfully",
+    "select_a_supplier": "Select a supplier"
   },
   "login": {
     "email": "Email",

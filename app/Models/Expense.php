@@ -44,6 +44,11 @@ class Expense extends Model implements HasMedia
         return $this->belongsTo(Customer::class, 'customer_id');
     }
 
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class, 'supplier_id');
+    }
+
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id');
@@ -158,6 +163,10 @@ class Expense extends Model implements HasMedia
             $query->whereUser($filters->get('customer_id'));
         }
 
+        if ($filters->get('supplier_id')) {
+            $query->whereSupplier($filters->get('supplier_id'));
+        }
+
         if ($filters->get('expense_id')) {
             $query->whereExpense($filters->get('expense_id'));
         }
@@ -197,6 +206,11 @@ class Expense extends Model implements HasMedia
     public function scopeWhereOrder($query, $orderByField, $orderBy)
     {
         $query->orderBy($orderByField, $orderBy);
+    }
+
+    public function scopeWhereSupplier($query, $supplier_id)
+    {
+        return $query->where('expenses.supplier_id', $supplier_id);
     }
 
     public function scopeWhereCompany($query)

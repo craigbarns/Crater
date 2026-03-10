@@ -192,6 +192,26 @@
 
           <BaseInputGroup
             :content-loading="isFetchingInitialData"
+            :label="$t('expenses.supplier')"
+          >
+            <BaseMultiselect
+              v-model="expenseStore.currentExpense.supplier_id"
+              :content-loading="isFetchingInitialData"
+              value-prop="id"
+              label="name"
+              track-by="id"
+              :options="searchSupplier"
+              v-if="!isFetchingInitialData"
+              :filter-results="false"
+              resolve-on-load
+              :delay="500"
+              searchable
+              :placeholder="$t('suppliers.select_a_supplier')"
+            />
+          </BaseInputGroup>
+
+          <BaseInputGroup
+            :content-loading="isFetchingInitialData"
             :label="$t('payments.payment_mode')"
           >
             <BaseMultiselect
@@ -298,6 +318,7 @@ import { useExpenseStore } from '@/scripts/admin/stores/expense'
 import { useCategoryStore } from '@/scripts/admin/stores/category'
 import { useCompanyStore } from '@/scripts/admin/stores/company'
 import { useCustomerStore } from '@/scripts/admin/stores/customer'
+import { useSupplierStore } from '@/scripts/admin/stores/supplier'
 import { useCustomFieldStore } from '@/scripts/admin/stores/custom-field'
 import { useModalStore } from '@/scripts/stores/modal'
 import ExpenseCustomFields from '@/scripts/admin/components/custom-fields/CreateCustomFields.vue'
@@ -306,6 +327,7 @@ import ExchangeRateConverter from '@/scripts/admin/components/estimate-invoice-c
 import { useGlobalStore } from '@/scripts/admin/stores/global'
 
 const customerStore = useCustomerStore()
+const supplierStore = useSupplierStore()
 const companyStore = useCompanyStore()
 const expenseStore = useExpenseStore()
 const categoryStore = useCategoryStore()
@@ -439,6 +461,18 @@ async function searchCustomer(search) {
   return res.data.data
 }
 
+async function searchSupplier(search) {
+  let res = await supplierStore.fetchSuppliers({ search })
+  if(res.data.data.length>0 && supplierStore.editSupplier) {
+    let supplierFound = res.data.data.find((s) => s.id==supplierStore.editSupplier.id)
+    if(!supplierFound) {
+      let edit_supplier = Object.assign({}, supplierStore.editSupplier)
+      res.data.data.unshift(edit_supplier)
+    }
+  }
+  return res.data.data
+}
+
 async function loadData() {
   if (!isEdit.value) {
     expenseStore.currentExpense.currency_id =
@@ -463,6 +497,10 @@ async function loadData() {
 
       if(!customerStore.editCustomer && expenseData.data.data.customer) {
         customerStore.editCustomer = expenseData.data.data.customer
+      }
+
+      if(!supplierStore.editSupplier && expenseData.data.data.supplier) {
+        supplierStore.editSupplier = expenseData.data.data.supplier
       }
     }
 
@@ -509,5 +547,6 @@ onBeforeUnmount(() => {
   expenseStore.resetCurrentExpenseData()
   customerStore.editCustomer = null
   categoryStore.editCategory = null
+  supplierStore.editSupplier = null
 })
 </script>
