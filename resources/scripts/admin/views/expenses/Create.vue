@@ -475,10 +475,17 @@ async function searchSupplier(search) {
 
 async function loadData() {
   if (!isEdit.value) {
-    expenseStore.currentExpense.currency_id =
-      companyStore.selectedCompanyCurrency.id
-    expenseStore.currentExpense.selectedCurrency =
-      companyStore.selectedCompanyCurrency
+    // Default to USD if available, otherwise fall back to company currency
+    const usdCurrency = globalStore.currencies.find((c) => c.code === 'USD')
+    if (usdCurrency) {
+      expenseStore.currentExpense.currency_id = usdCurrency.id
+      expenseStore.currentExpense.selectedCurrency = usdCurrency
+    } else {
+      expenseStore.currentExpense.currency_id =
+        companyStore.selectedCompanyCurrency.id
+      expenseStore.currentExpense.selectedCurrency =
+        companyStore.selectedCompanyCurrency
+    }
   }
 
   isFetchingInitialData.value = true
