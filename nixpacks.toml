@@ -1,8 +1,12 @@
 [phases.setup]
 nixPkgs = ["php82", "php82Packages.composer"]
+onlyIncludeFiles = ["composer.json", "composer.lock", "app", "bootstrap", "config", "database", "public", "resources", "routes", "storage", "artisan", "server.php", ".env.example", "nixpacks.toml", "railway.json"]
 
 [phases.install]
 cmds = [
     "composer install --no-dev --optimize-autoloader --no-interaction",
     "chmod -R 775 storage bootstrap/cache"
 ]
+
+[phases.build]
+cmds = []
