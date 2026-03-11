@@ -1,6 +1,5 @@
 [phases.setup]
 nixPkgs = ["php82", "php82Packages.composer"]
-onlyIncludeFiles = ["composer.json", "composer.lock", "app", "bootstrap", "config", "database", "public", "resources", "routes", "storage", "artisan", "server.php", ".env.example", "nixpacks.toml", "railway.json"]
 
 [phases.install]
 cmds = [
@@ -9,4 +8,7 @@ cmds = [
 ]
 
 [phases.build]
-cmds = []
+cmds = ["echo 'Assets pre-built, skipping npm build'"]
+
+[start]
+cmd = "mkdir -p storage/app && touch storage/app/database_created && touch .env && chmod 644 .env && chmod -R 775 storage bootstrap/cache && php artisan migrate --force && php artisan optimize && php -S 0.0.0.0:$PORT -t public"
