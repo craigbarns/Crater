@@ -11,15 +11,17 @@ class SeedSupplierPaymentAbilities extends Migration
         $companies = Company::all();
 
         foreach ($companies as $company) {
-            $role = $company->roles()->where('name', 'super admin')->first();
+            Bouncer::scope()->to($company->id);
 
-            if ($role) {
-                Bouncer::scope()->to($company->id);
+            $superAdmin = Bouncer::role()->where('name', 'super admin')
+                ->where('scope', $company->id)
+                ->first();
 
-                Bouncer::allow($role)->to('view-supplier-payment');
-                Bouncer::allow($role)->to('create-supplier-payment');
-                Bouncer::allow($role)->to('edit-supplier-payment');
-                Bouncer::allow($role)->to('delete-supplier-payment');
+            if ($superAdmin) {
+                Bouncer::allow($superAdmin)->to('view-supplier-payment');
+                Bouncer::allow($superAdmin)->to('create-supplier-payment');
+                Bouncer::allow($superAdmin)->to('edit-supplier-payment');
+                Bouncer::allow($superAdmin)->to('delete-supplier-payment');
             }
         }
     }
