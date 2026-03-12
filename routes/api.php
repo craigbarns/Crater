@@ -26,6 +26,7 @@ use Crater\Http\Controllers\V1\Admin\ExchangeRate\GetSupportedCurrenciesControll
 use Crater\Http\Controllers\V1\Admin\ExchangeRate\GetUsedCurrenciesController;
 use Crater\Http\Controllers\V1\Admin\Expense\ExpenseCategoriesController;
 use Crater\Http\Controllers\V1\Admin\Expense\ExpensesController;
+use Crater\Http\Controllers\V1\Admin\Supplier\SupplierPaymentsController;
 use Crater\Http\Controllers\V1\Admin\Supplier\SuppliersController;
 use Crater\Http\Controllers\V1\Admin\Expense\ShowReceiptController;
 use Crater\Http\Controllers\V1\Admin\Expense\UploadReceiptController;
@@ -260,6 +261,13 @@ Route::prefix('/v1')->group(function () {
             Route::post('/suppliers/delete', [SuppliersController::class, 'delete']);
 
             Route::resource('suppliers', SuppliersController::class);
+
+            // Supplier Payments
+            //----------------------------------
+
+            Route::post('/supplier-payments/delete', [SupplierPaymentsController::class, 'delete']);
+
+            Route::apiResource('supplier-payments', SupplierPaymentsController::class);
 
 
             // Items

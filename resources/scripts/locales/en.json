@@ -13,7 +13,8 @@
     "logout": "Logout",
     "users": "Users",
     "modules": "Modules",
-    "suppliers": "Suppliers"
+    "suppliers": "Suppliers",
+    "supplier_payments": "Supplier Payments"
   },
   "general": {
     "add_company": "Add Company",
@@ -694,6 +695,30 @@
     "updated_message": "Supplier updated successfully",
     "deleted_message": "Supplier deleted successfully | Suppliers deleted successfully",
     "select_a_supplier": "Select a supplier"
+  },
+  "supplier_payments": {
+    "title": "Supplier Payments",
+    "supplier_payment": "Supplier Payment",
+    "add_supplier_payment": "Add Payment",
+    "add_new_supplier_payment": "Add New Supplier Payment",
+    "new_supplier_payment": "New Supplier Payment",
+    "edit_supplier_payment": "Edit Supplier Payment",
+    "save_supplier_payment": "Save Payment",
+    "update_supplier_payment": "Update Payment",
+    "no_supplier_payments": "No supplier payments yet!",
+    "list_of_supplier_payments": "This section will contain the list of supplier payments.",
+    "confirm_delete": "You will not be able to recover this payment | You will not be able to recover these payments",
+    "created_message": "Supplier payment created successfully",
+    "updated_message": "Supplier payment updated successfully",
+    "deleted_message": "Payment deleted successfully | Payments deleted successfully",
+    "date": "Date",
+    "payment_number": "Payment Number",
+    "supplier": "Supplier",
+    "payment_mode": "Payment Mode",
+    "amount": "Amount",
+    "notes": "Notes",
+    "expense": "Expense",
+    "select_expense": "Select an expense"
   },
   "login": {
     "email": "Email",

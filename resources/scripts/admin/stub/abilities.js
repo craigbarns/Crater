@@ -58,6 +58,12 @@ export default {
   EDIT_SUPPLIER: 'edit-supplier',
   VIEW_SUPPLIER: 'view-supplier',
 
+  // Supplier Payments
+  CREATE_SUPPLIER_PAYMENT: 'create-supplier-payment',
+  DELETE_SUPPLIER_PAYMENT: 'delete-supplier-payment',
+  EDIT_SUPPLIER_PAYMENT: 'edit-supplier-payment',
+  VIEW_SUPPLIER_PAYMENT: 'view-supplier-payment',
+
   // Custom fields
   CREATE_CUSTOM_FIELDS: 'create-custom-field',
   DELETE_CUSTOM_FIELDS: 'delete-custom-field',

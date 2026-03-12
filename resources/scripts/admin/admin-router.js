@@ -25,6 +25,12 @@ const SupplierIndex = () => import('@/scripts/admin/views/suppliers/Index.vue')
 const SupplierCreate = () =>
   import('@/scripts/admin/views/suppliers/Create.vue')
 
+// Supplier Payments
+const SupplierPaymentIndex = () =>
+  import('@/scripts/admin/views/supplier-payments/Index.vue')
+const SupplierPaymentCreate = () =>
+  import('@/scripts/admin/views/supplier-payments/Create.vue')
+
 //Settings
 const SettingsIndex = () =>
   import('@/scripts/admin/views/settings/SettingsIndex.vue')
@@ -217,6 +223,25 @@ export default [
         name: 'suppliers.edit',
         meta: { ability: abilities.EDIT_SUPPLIER },
         component: SupplierCreate,
+      },
+
+      // Supplier Payments
+      {
+        path: 'supplier-payments',
+        meta: { ability: abilities.VIEW_SUPPLIER_PAYMENT },
+        component: SupplierPaymentIndex,
+      },
+      {
+        path: 'supplier-payments/create',
+        name: 'supplier-payments.create',
+        meta: { ability: abilities.CREATE_SUPPLIER_PAYMENT },
+        component: SupplierPaymentCreate,
+      },
+      {
+        path: 'supplier-payments/:id/edit',
+        name: 'supplier-payments.edit',
+        meta: { ability: abilities.EDIT_SUPPLIER_PAYMENT },
+        component: SupplierPaymentCreate,
       },
 
       // Payments

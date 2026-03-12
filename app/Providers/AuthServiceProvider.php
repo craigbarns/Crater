@@ -16,6 +16,7 @@ use Crater\Policies\PaymentPolicy;
 use Crater\Policies\RecurringInvoicePolicy;
 use Crater\Policies\ReportPolicy;
 use Crater\Policies\SettingsPolicy;
+use Crater\Policies\SupplierPaymentPolicy;
 use Crater\Policies\SupplierPolicy;
 use Crater\Policies\UserPolicy;
 use Gate;
@@ -45,6 +46,7 @@ class AuthServiceProvider extends ServiceProvider
         \Crater\Models\RecurringInvoice::class => \Crater\Policies\RecurringInvoicePolicy::class,
         \Crater\Models\ExchangeRateProvider::class => \Crater\Policies\ExchangeRateProviderPolicy::class,
         \Crater\Models\Supplier::class => \Crater\Policies\SupplierPolicy::class,
+        \Crater\Models\SupplierPayment::class => \Crater\Policies\SupplierPaymentPolicy::class,
     ];
 
     /**
@@ -83,6 +85,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('delete multiple payments', [PaymentPolicy::class, 'deleteMultiple']);
         Gate::define('delete multiple recurring invoices', [RecurringInvoicePolicy::class, 'deleteMultiple']);
         Gate::define('delete multiple suppliers', [SupplierPolicy::class, 'deleteMultiple']);
+        Gate::define('delete multiple supplier payments', [SupplierPaymentPolicy::class, 'deleteMultiple']);
 
         Gate::define('view dashboard', [DashboardPolicy::class, 'view']);
 

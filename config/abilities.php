@@ -11,6 +11,7 @@ use Crater\Models\Note;
 use Crater\Models\Payment;
 use Crater\Models\RecurringInvoice;
 use Crater\Models\Supplier;
+use Crater\Models\SupplierPayment;
 use Crater\Models\TaxType;
 
 return [
@@ -79,6 +80,39 @@ return [
             "model" => Supplier::class,
             "depends_on" => [
                 'view-supplier',
+            ]
+        ],
+
+        // Supplier Payment
+        [
+            "name" => "view supplier payment",
+            "ability" => "view-supplier-payment",
+            "model" => SupplierPayment::class,
+        ],
+        [
+            "name" => "create supplier payment",
+            "ability" => "create-supplier-payment",
+            "model" => SupplierPayment::class,
+            "depends_on" => [
+                'view-supplier-payment',
+                'view-supplier',
+            ]
+        ],
+        [
+            "name" => "edit supplier payment",
+            "ability" => "edit-supplier-payment",
+            "model" => SupplierPayment::class,
+            "depends_on" => [
+                'view-supplier-payment',
+                'view-supplier',
+            ]
+        ],
+        [
+            "name" => "delete supplier payment",
+            "ability" => "delete-supplier-payment",
+            "model" => SupplierPayment::class,
+            "depends_on" => [
+                'view-supplier-payment',
             ]
         ],
 

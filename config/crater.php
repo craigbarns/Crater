@@ -4,6 +4,7 @@ use Crater\Models\Customer;
 use Crater\Models\CustomField;
 use Crater\Models\Estimate;
 use Crater\Models\Supplier;
+use Crater\Models\SupplierPayment;
 use Crater\Models\ExchangeRateProvider;
 use Crater\Models\Expense;
 use Crater\Models\Invoice;
@@ -371,6 +372,16 @@ return [
             'owner_only' => false,
             'ability' => 'view-expense',
             'model' => Expense::class
+        ],
+        [
+            'title' => 'navigation.supplier_payments',
+            'group' => 2,
+            'link' => '/admin/supplier-payments',
+            'icon' => 'CashIcon',
+            'name' => 'Supplier Payments',
+            'owner_only' => false,
+            'ability' => 'view-supplier-payment',
+            'model' => SupplierPayment::class
         ],
         [
             'title' => 'navigation.modules',

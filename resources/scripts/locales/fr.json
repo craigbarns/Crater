@@ -13,7 +13,8 @@
     "logout": "Déconnexion",
     "users": "Utilisateurs",
     "modules": "Modules",
-    "suppliers": "Fournisseurs"
+    "suppliers": "Fournisseurs",
+    "supplier_payments": "Paiements fournisseurs"
   },
   "general": {
     "add_company": "Ajouter une entreprise",
@@ -694,6 +695,30 @@
     "updated_message": "Fournisseur mis à jour",
     "deleted_message": "Fournisseur supprimé | Fournisseurs supprimés",
     "select_a_supplier": "Sélectionnez un fournisseur"
+  },
+  "supplier_payments": {
+    "title": "Paiements fournisseurs",
+    "supplier_payment": "Paiement fournisseur",
+    "add_supplier_payment": "Ajouter un paiement",
+    "add_new_supplier_payment": "Ajouter un paiement fournisseur",
+    "new_supplier_payment": "Nouveau paiement fournisseur",
+    "edit_supplier_payment": "Modifier le paiement fournisseur",
+    "save_supplier_payment": "Enregistrer",
+    "update_supplier_payment": "Enregistrer",
+    "no_supplier_payments": "Aucun paiement fournisseur",
+    "list_of_supplier_payments": "Ajoutez des paiements fournisseurs et retrouvez-les ici",
+    "confirm_delete": "Vous ne pourrez pas récupérer ce paiement | Vous ne pourrez pas récupérer ces paiements",
+    "created_message": "Paiement fournisseur créé",
+    "updated_message": "Paiement fournisseur mis à jour",
+    "deleted_message": "Paiement supprimé | Paiements supprimés",
+    "date": "Date",
+    "payment_number": "Numéro de paiement",
+    "supplier": "Fournisseur",
+    "payment_mode": "Mode de paiement",
+    "amount": "Montant",
+    "notes": "Notes",
+    "expense": "Dépense",
+    "select_expense": "Sélectionnez une dépense"
   },
   "login": {
     "email": "Email",
