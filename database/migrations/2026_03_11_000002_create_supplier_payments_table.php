@@ -8,6 +8,9 @@ class CreateSupplierPaymentsTable extends Migration
 {
     public function up()
     {
+        // Drop if exists (handles partial creation from previous failed migration)
+        Schema::dropIfExists('supplier_payments');
+
         Schema::create('supplier_payments', function (Blueprint $table) {
             $table->id();
             $table->string('payment_number');
@@ -15,11 +18,11 @@ class CreateSupplierPaymentsTable extends Migration
             $table->unsignedBigInteger('amount');
             $table->text('notes')->nullable();
             $table->unsignedBigInteger('supplier_id');
-            $table->unsignedBigInteger('expense_id')->nullable();
+            $table->integer('expense_id')->unsigned()->nullable();
             $table->integer('payment_method_id')->unsigned()->nullable();
-            $table->unsignedBigInteger('currency_id')->nullable();
-            $table->unsignedBigInteger('company_id');
-            $table->unsignedBigInteger('creator_id')->nullable();
+            $table->unsignedInteger('currency_id')->nullable();
+            $table->integer('company_id')->unsigned();
+            $table->integer('creator_id')->unsigned()->nullable();
             $table->decimal('exchange_rate', 19, 6)->nullable();
             $table->unsignedBigInteger('base_amount')->nullable();
             $table->timestamps();
