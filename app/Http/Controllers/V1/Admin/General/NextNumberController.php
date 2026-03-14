@@ -6,6 +6,7 @@ use Crater\Http\Controllers\Controller;
 use Crater\Models\Estimate;
 use Crater\Models\Invoice;
 use Crater\Models\Payment;
+use Crater\Models\SupplierPayment;
 use Crater\Services\SerialNumberFormatter;
 use Illuminate\Http\Request;
 
@@ -45,6 +46,16 @@ class NextNumberController extends Controller
                     $nextNumber = $serial->setModel($payment)
                         ->setModelObject($request->model_id)
                         ->getNextNumber();
+
+                    break;
+
+                case 'supplier_payment':
+                    $companyId = $request->header('company');
+                    $last = SupplierPayment::where('company_id', $companyId)
+                        ->orderBy('id', 'desc')
+                        ->first();
+                    $nextSeq = $last ? ((int) preg_replace('/[^0-9]/', '', $last->payment_number)) + 1 : 1;
+                    $nextNumber = 'SP-' . str_pad($nextSeq, 6, '0', STR_PAD_LEFT);
 
                     break;
 
